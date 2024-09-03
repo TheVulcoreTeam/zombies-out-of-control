@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgtdy5ebiqdf1"]
+
+[ext_resource type="Texture2D" uid="uid://dx8xy0mikng2x" path="res://game/enemies/zombies/zombies_1.png" id="1_g7beu"]
+[ext_resource type="Texture2D" uid="uid://ca13rwkefj7le" path="res://game/enemies/zombies/zombies_2.png" id="2_kdwal"]
+[ext_resource type="Texture2D" uid="uid://cfdcgag7xxi60" path="res://game/enemies/zombies/zombies_3.png" id="3_i0kki"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnpc4"]
+bounce = 0.5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0rgb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g7beu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kdwal")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i0kki")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o4bu2"]
+radius = 17.0294
+
+[node name="Zombie" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_xnpc4")
+gravity_scale = 0.1
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_v0rgb")
+autoplay = "default"
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o4bu2")

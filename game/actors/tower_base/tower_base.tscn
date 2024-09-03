@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://btrtvj117be6s"]
+
+[ext_resource type="Texture2D" uid="uid://c6oa3rlyurcla" path="res://game/actors/tower_base/tower_base.png" id="1_4dhj5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yruvl"]
+radius = 15.0
+
+[node name="TowerBase" type="StaticBody2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_4dhj5")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yruvl")
