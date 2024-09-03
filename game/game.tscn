@@ -1,36 +1,93 @@
-[gd_scene load_steps=4 format=3 uid="uid://uuai23oekr12"]
+[gd_scene load_steps=6 format=3 uid="uid://uuai23oekr12"]
 
 [ext_resource type="Texture2D" uid="uid://c17qtengxgjv5" path="res://game/background/background.png" id="1_hjkjo"]
+[ext_resource type="Script" path="res://game/game.gd" id="1_n2a17"]
 [ext_resource type="PackedScene" uid="uid://btrtvj117be6s" path="res://game/actors/tower_base/tower_base.tscn" id="2_4mh7s"]
 [ext_resource type="PackedScene" uid="uid://cgtdy5ebiqdf1" path="res://game/enemies/zombies/zombie.tscn" id="3_g6l2p"]
+[ext_resource type="PackedScene" uid="uid://b2hf3i2w2fntc" path="res://game/actors/paddle/paddle.tscn" id="5_h0hs6"]
 
 [node name="Game" type="Node2D"]
+script = ExtResource("1_n2a17")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture = ExtResource("1_hjkjo")
 centered = false
 metadata/_edit_lock_ = true
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
 [node name="Zombie" parent="." instance=ExtResource("3_g6l2p")]
 position = Vector2(324, 24)
 
 [node name="Left" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Left"]
 polygon = PackedVector2Array(0, 96, 256, 352, 256, 360, 0, 360)
 
 [node name="Right" type="StaticBody2D" parent="."]
 position = Vector2(322, 0)
+metadata/_edit_lock_ = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Right"]
 position = Vector2(129, -14)
 polygon = PackedVector2Array(189, 110, -67, 366, -67, 374, 189, 374)
 
 [node name="TowerBase1" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(316, 320)
+position = Vector2(50, 70)
 
 [node name="TowerBase2" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(268, 269)
+position = Vector2(125, 70)
 
 [node name="TowerBase3" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(369, 269)
+position = Vector2(200, 70)
+
+[node name="TowerBase4" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(275, 70)
+
+[node name="TowerBase5" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(350, 70)
+
+[node name="TowerBase6" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(425, 70)
+
+[node name="TowerBase7" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(500, 70)
+
+[node name="TowerBase8" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(575, 70)
+
+[node name="TowerBase10" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(166, 145)
+
+[node name="TowerBase11" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(241, 145)
+
+[node name="TowerBase12" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(316, 145)
+
+[node name="TowerBase13" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(391, 145)
+
+[node name="TowerBase14" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(466, 145)
+
+[node name="TowerBase15" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(200, 220)
+
+[node name="TowerBase16" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(275, 220)
+
+[node name="TowerBase17" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(350, 220)
+
+[node name="TowerBase18" parent="." instance=ExtResource("2_4mh7s")]
+position = Vector2(425, 220)
+
+[node name="Paddle" parent="." instance=ExtResource("5_h0hs6")]
+position = Vector2(320, 285)
+platform_on_leave = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
