@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cgtdy5ebiqdf1"]
+[gd_scene load_steps=15 format=3 uid="uid://cgtdy5ebiqdf1"]
 
 [ext_resource type="Texture2D" uid="uid://dx8xy0mikng2x" path="res://game/enemies/zombies/zombies_1.png" id="1_g7beu"]
 [ext_resource type="Script" path="res://game/enemies/zombies/zombie.gd" id="1_xulm4"]
@@ -28,13 +28,109 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_o4bu2"]
 radius = 13.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52px5"]
+size = Vector2(28, 28)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsksc"]
+bg_color = Color(0.168627, 0.168627, 0.270588, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53bcv"]
+bg_color = Color(0.901961, 0.270588, 0.223529, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_o4qjw"]
+resource_name = "DEAD"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 12.5664]
+}
+
+[sub_resource type="Animation" id="Animation_8nx48"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1w4ld"]
+resource_name = "SHOW"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_20tmv"]
+_data = {
+"DEAD": SubResource("Animation_o4qjw"),
+"RESET": SubResource("Animation_8nx48"),
+"SHOW": SubResource("Animation_1w4ld")
+}
+
 [node name="Zombie" type="RigidBody2D"]
+collision_layer = 3
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_xnpc4")
 gravity_scale = 0.1
 script = ExtResource("1_xulm4")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(1e-05, 1e-05)
 sprite_frames = SubResource("SpriteFrames_v0rgb")
 autoplay = "default"
 
@@ -44,4 +140,29 @@ shape = SubResource("CircleShape2D_o4bu2")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(1.92041, 1.92041)
 
+[node name="HurtArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collision" type="CollisionShape2D" parent="HurtArea"]
+shape = SubResource("RectangleShape2D_52px5")
+
+[node name="HP" type="ProgressBar" parent="."]
+offset_left = -12.0
+offset_top = 16.0
+offset_right = 12.0
+offset_bottom = 22.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rsksc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_53bcv")
+step = 1.0
+show_percentage = false
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_20tmv")
+}
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
+[connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]

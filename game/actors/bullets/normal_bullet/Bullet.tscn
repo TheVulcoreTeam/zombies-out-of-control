@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmxwreqtr45cd"]
+
+[ext_resource type="Script" path="res://game/actors/bullets/normal_bullet/bullet.gd" id="1_jhp0y"]
+[ext_resource type="Texture2D" uid="uid://bsk6wghxielg8" path="res://game/actors/bullets/normal_bullet/bullet.png" id="2_tdbwo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7dknu"]
+radius = 4.0
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_jhp0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7dknu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_tdbwo")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

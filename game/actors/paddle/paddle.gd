@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+const BULLET = preload("res://game/actors/bullets/normal_bullet/Bullet.tscn")
+
 var movement_direction_x := 0
-var speed := 10000
+var speed := 6000
 
 var store_global_position : Vector2
 
@@ -13,9 +15,28 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	movement_direction_x = Input.get_axis("ui_left", "ui_right")
 	velocity.x = movement_direction_x * delta * speed
-	#move_and_collide(Vector2(movement_direction_x * delta * speed, 0))
+	
 	move_and_slide()
 
 
 func _process(delta: float) -> void:
 	global_position.y = store_global_position.y
+	
+	$CannonBase/Cannon.look_at(get_global_mouse_position())
+	$CannonBase/Cannon.rotation_degrees += 90
+	
+	if Input.is_action_just_pressed("fire"):
+		create_bullet()
+		$CannonBase/Cannon.play()
+
+
+func create_bullet():
+	var bullet_inst = BULLET.instantiate()
+	bullet_inst.global_position = $CannonBase/Cannon/Marker2D.global_position
+	bullet_inst.direction = $CannonBase/Cannon.global_position.direction_to(get_global_mouse_position())
+	
+	get_parent().add_child(bullet_inst)
+
+
+func _on_cannon_animation_finished() -> void:
+	$CannonBase/Cannon.frame = 0
