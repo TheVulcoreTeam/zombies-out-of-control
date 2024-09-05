@@ -1,14 +1,48 @@
-[gd_scene load_steps=3 format=3 uid="uid://btrtvj117be6s"]
+[gd_scene load_steps=7 format=3 uid="uid://btrtvj117be6s"]
 
 [ext_resource type="Texture2D" uid="uid://c6oa3rlyurcla" path="res://game/actors/tower_base/tower_base.png" id="1_4dhj5"]
+[ext_resource type="Script" path="res://game/actors/tower_base/tower_base.gd" id="1_v1euk"]
+[ext_resource type="Texture2D" uid="uid://682ixerldrhk" path="res://game/actors/automatic_tower/tower.png" id="3_xgtpb"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3cxdg"]
+radius = 83.4865
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yruvl"]
 radius = 15.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6ax8"]
+size = Vector2(32, 32)
+
 [node name="TowerBase" type="StaticBody2D"]
+script = ExtResource("1_v1euk")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_4dhj5")
 
+[node name="Tower" type="Sprite2D" parent="Sprite"]
+visible = false
+texture = ExtResource("3_xgtpb")
+
+[node name="FireArea" type="Area2D" parent="Sprite/Tower"]
+
+[node name="Collision" type="CollisionShape2D" parent="Sprite/Tower/FireArea"]
+shape = SubResource("CircleShape2D_3cxdg")
+
+[node name="FireDelay" type="Timer" parent="Sprite/Tower"]
+autostart = true
+
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_yruvl")
+
+[node name="MouseInside" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="MouseInside"]
+shape = SubResource("RectangleShape2D_k6ax8")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="body_entered" from="Sprite/Tower/FireArea" to="." method="_on_fire_area_body_entered"]
+[connection signal="body_exited" from="Sprite/Tower/FireArea" to="." method="_on_fire_area_body_exited"]
+[connection signal="timeout" from="Sprite/Tower/FireDelay" to="." method="_on_fire_delay_timeout"]
+[connection signal="mouse_entered" from="MouseInside" to="." method="_on_mouse_inside_mouse_entered"]
+[connection signal="mouse_exited" from="MouseInside" to="." method="_on_mouse_inside_mouse_exited"]

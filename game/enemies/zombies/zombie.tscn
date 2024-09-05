@@ -1,9 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://cgtdy5ebiqdf1"]
+[gd_scene load_steps=20 format=3 uid="uid://cgtdy5ebiqdf1"]
 
 [ext_resource type="Texture2D" uid="uid://dx8xy0mikng2x" path="res://game/enemies/zombies/zombies_1.png" id="1_g7beu"]
 [ext_resource type="Script" path="res://game/enemies/zombies/zombie.gd" id="1_xulm4"]
 [ext_resource type="Texture2D" uid="uid://ca13rwkefj7le" path="res://game/enemies/zombies/zombies_2.png" id="2_kdwal"]
 [ext_resource type="Texture2D" uid="uid://cfdcgag7xxi60" path="res://game/enemies/zombies/zombies_3.png" id="3_i0kki"]
+[ext_resource type="AudioStream" uid="uid://0ihmv3pmcp2t" path="res://game/audio/sfx/aargh_1.ogg" id="5_5wstb"]
+[ext_resource type="AudioStream" uid="uid://dw2faeutu1487" path="res://game/audio/sfx/aargh_2.ogg" id="6_1cbxr"]
+[ext_resource type="AudioStream" uid="uid://ct1p0mh203dmq" path="res://game/audio/sfx/aargh_3.ogg" id="7_vcmlj"]
+[ext_resource type="AudioStream" uid="uid://dpa1uhxlmgk8w" path="res://game/audio/sfx/aargh_4.ogg" id="8_2x848"]
+[ext_resource type="AudioStream" uid="uid://dqwehmkaqu537" path="res://game/audio/sfx/aargh_5.ogg" id="9_t0ric"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnpc4"]
 bounce = 0.75
@@ -162,7 +167,42 @@ libraries = {
 "": SubResource("AnimationLibrary_20tmv")
 }
 
+[node name="Aargh1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5wstb")
+pitch_scale = 2.0
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_1cbxr")
+pitch_scale = 2.0
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vcmlj")
+pitch_scale = 2.0
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2x848")
+pitch_scale = 2.0
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_t0ric")
+pitch_scale = 2.0
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="TimeToDead" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="HurtArea" to="." method="_on_hurt_area_body_entered"]
 [connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]
+[connection signal="timeout" from="TimeToDead" to="." method="_on_time_to_dead_timeout"]

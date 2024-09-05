@@ -24,10 +24,6 @@ func _process(delta: float) -> void:
 	
 	$CannonBase/Cannon.look_at(get_global_mouse_position())
 	$CannonBase/Cannon.rotation_degrees += 90
-	
-	if Input.is_action_just_pressed("fire"):
-		create_bullet()
-		$CannonBase/Cannon.play()
 
 
 func create_bullet():
@@ -40,3 +36,8 @@ func create_bullet():
 
 func _on_cannon_animation_finished() -> void:
 	$CannonBase/Cannon.frame = 0
+
+
+func _on_fire_timer_timeout() -> void:
+	create_bullet()
+	$CannonBase/Cannon.play()

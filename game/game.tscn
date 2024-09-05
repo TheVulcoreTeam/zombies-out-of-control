@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://uuai23oekr12"]
+[gd_scene load_steps=25 format=3 uid="uid://uuai23oekr12"]
 
 [ext_resource type="Texture2D" uid="uid://c17qtengxgjv5" path="res://game/background/background.png" id="1_hjkjo"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_n2a17"]
@@ -9,6 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://cxyk62jnqycw6" path="res://game/ui/shop_button/button-hover.png" id="7_1gyrf"]
 [ext_resource type="Texture2D" uid="uid://682ixerldrhk" path="res://game/actors/automatic_tower/tower.png" id="8_cs7si"]
 [ext_resource type="FontFile" uid="uid://cyejmf344osl8" path="res://game/fonts/Nokia/nokia.ttf" id="9_pxsud"]
+[ext_resource type="AudioStream" uid="uid://l1w4wc7b2v7h" path="res://game/audio/bgm/Neon.ogg" id="10_0hpyu"]
+[ext_resource type="PackedScene" uid="uid://kboeioso6hec" path="res://game/brain/brain.tscn" id="11_0w71a"]
+[ext_resource type="Texture2D" uid="uid://hlovjy6qusvs" path="res://game/ui/button_plus/button_plus_normal.png" id="12_ru5mv"]
+[ext_resource type="Texture2D" uid="uid://pkeb2jbbfyns" path="res://game/ui/button_plus/button_plus_pressed.png" id="13_2ywo3"]
+[ext_resource type="Texture2D" uid="uid://dk3n14keraydv" path="res://game/ui/button_plus/button_plus_hover.png" id="14_sgjdw"]
+[ext_resource type="Texture2D" uid="uid://dbm3swuaq3bi1" path="res://game/ui/button_plus/button_plus_disabled.png" id="15_4jq58"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc3aw"]
 font = ExtResource("9_pxsud")
@@ -19,6 +25,55 @@ outline_color = Color(0.960784, 1, 0.909804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_luua2"]
 font = ExtResource("9_pxsud")
+font_color = Color(1, 0.537255, 0.2, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4tjw"]
+bg_color = Color(0.960784, 1, 0.909804, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg815"]
+bg_color = Color(1, 0.321569, 0.466667, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_2pvbi"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.321569, 0.466667, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2qst"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.537255, 0.2, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y2n6i"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.321569, 0.466667, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twto0"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.537255, 0.2, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c3ujo"]
+font = ExtResource("9_pxsud")
+font_size = 8
 font_color = Color(1, 0.537255, 0.2, 1)
 outline_size = 8
 outline_color = Color(0.960784, 1, 0.909804, 1)
@@ -39,6 +94,10 @@ autostart = true
 wait_time = 5.0
 autostart = true
 
+[node name="Health" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="Left" type="StaticBody2D" parent="."]
 collision_layer = 3
 collision_mask = 3
@@ -46,6 +105,7 @@ metadata/_edit_lock_ = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Left"]
 polygon = PackedVector2Array(0, 96, 256, 352, 256, 360, 0, 360)
+metadata/_edit_lock_ = true
 
 [node name="Right" type="StaticBody2D" parent="."]
 position = Vector2(322, 0)
@@ -56,30 +116,7 @@ metadata/_edit_lock_ = true
 [node name="Collision" type="CollisionPolygon2D" parent="Right"]
 position = Vector2(129, -14)
 polygon = PackedVector2Array(189, 110, -67, 366, -67, 374, 189, 374)
-
-[node name="TowerBase1" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(50, 70)
-
-[node name="TowerBase2" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(125, 70)
-
-[node name="TowerBase3" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(200, 70)
-
-[node name="TowerBase4" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(275, 70)
-
-[node name="TowerBase5" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(350, 70)
-
-[node name="TowerBase6" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(425, 70)
-
-[node name="TowerBase7" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(500, 70)
-
-[node name="TowerBase8" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(575, 70)
+metadata/_edit_lock_ = true
 
 [node name="TowerBase10" parent="." instance=ExtResource("2_4mh7s")]
 position = Vector2(166, 145)
@@ -88,7 +125,7 @@ position = Vector2(166, 145)
 position = Vector2(241, 145)
 
 [node name="TowerBase12" parent="." instance=ExtResource("2_4mh7s")]
-position = Vector2(316, 153)
+position = Vector2(316, 145)
 
 [node name="TowerBase13" parent="." instance=ExtResource("2_4mh7s")]
 position = Vector2(391, 145)
@@ -113,6 +150,7 @@ position = Vector2(320, 285)
 platform_on_leave = 1
 
 [node name="BuyTurret" type="TextureButton" parent="."]
+visible = false
 offset_left = 9.0
 offset_top = 318.0
 offset_right = 41.0
@@ -120,6 +158,17 @@ offset_bottom = 350.0
 texture_normal = ExtResource("5_bwq4w")
 texture_pressed = ExtResource("6_17dtk")
 texture_hover = ExtResource("7_1gyrf")
+
+[node name="TurretValue" type="Label" parent="BuyTurret"]
+layout_mode = 0
+offset_left = -9.0
+offset_top = 21.0
+offset_right = 41.0
+offset_bottom = 44.0
+text = "10"
+label_settings = SubResource("LabelSettings_wc3aw")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="BuyTurret"]
 layout_mode = 1
@@ -130,15 +179,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_cs7si")
 stretch_mode = 3
-
-[node name="TurretValue" type="Label" parent="."]
-offset_top = 339.0
-offset_right = 50.0
-offset_bottom = 362.0
-text = "50"
-label_settings = SubResource("LabelSettings_wc3aw")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Score" type="Label" parent="."]
 offset_left = 9.0
@@ -158,6 +198,132 @@ text = "Money: 0"
 label_settings = SubResource("LabelSettings_luua2")
 vertical_alignment = 1
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0hpyu")
+autoplay = true
+bus = &"bgm"
+
+[node name="Brain" parent="." instance=ExtResource("11_0w71a")]
+position = Vector2(320, 343)
+
+[node name="HP" type="ProgressBar" parent="."]
+offset_left = 513.0
+offset_top = 8.0
+offset_right = 633.0
+offset_bottom = 18.0
+theme_override_styles/background = SubResource("StyleBoxFlat_f4tjw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eg815")
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="BulletDamage" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 336.0
+offset_right = 630.0
+offset_bottom = 350.0
+text = "Bullet Damage: 1"
+label_settings = SubResource("LabelSettings_2pvbi")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ButtonBulletDamage" type="TextureButton" parent="BulletDamage"]
+layout_mode = 0
+offset_left = -33.0
+offset_right = -17.0
+offset_bottom = 16.0
+disabled = true
+texture_normal = ExtResource("12_ru5mv")
+texture_pressed = ExtResource("13_2ywo3")
+texture_hover = ExtResource("14_sgjdw")
+texture_disabled = ExtResource("15_4jq58")
+
+[node name="Price" type="Label" parent="BulletDamage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.449
+anchor_right = -0.199
+anchor_bottom = 1.143
+offset_left = -20.488
+offset_right = -18.488
+offset_bottom = -0.00200081
+text = "$10"
+label_settings = SubResource("LabelSettings_s2qst")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="BulletVelocity" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 320.0
+offset_right = 630.0
+offset_bottom = 334.0
+text = "Bullet Velocity: 1"
+label_settings = SubResource("LabelSettings_y2n6i")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="BulletVelocity"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.449
+anchor_right = -0.199
+anchor_bottom = 1.143
+offset_left = -20.488
+offset_right = -18.488
+offset_bottom = -0.00200081
+text = "$5"
+label_settings = SubResource("LabelSettings_twto0")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ButtonBulletVelocity" type="TextureButton" parent="BulletVelocity"]
+layout_mode = 0
+offset_left = -33.0
+offset_right = -17.0
+offset_bottom = 16.0
+disabled = true
+texture_normal = ExtResource("12_ru5mv")
+texture_pressed = ExtResource("13_2ywo3")
+texture_hover = ExtResource("14_sgjdw")
+texture_disabled = ExtResource("15_4jq58")
+
+[node name="MaxHP" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 304.0
+offset_right = 630.0
+offset_bottom = 318.0
+text = "Max HP: 3"
+label_settings = SubResource("LabelSettings_y2n6i")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Price" type="Label" parent="MaxHP"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.449
+anchor_right = -0.182
+anchor_bottom = 1.0
+offset_left = -20.488
+offset_right = -19.984
+text = "$5"
+label_settings = SubResource("LabelSettings_c3ujo")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ButtonMaxHP" type="TextureButton" parent="MaxHP"]
+layout_mode = 0
+offset_left = -33.0
+offset_right = -17.0
+offset_bottom = 16.0
+disabled = true
+texture_normal = ExtResource("12_ru5mv")
+texture_pressed = ExtResource("13_2ywo3")
+texture_hover = ExtResource("14_sgjdw")
+texture_disabled = ExtResource("15_4jq58")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Difficulty" to="." method="_on_difficulty_timeout"]
+[connection signal="timeout" from="Health" to="." method="_on_health_timeout"]
 [connection signal="pressed" from="BuyTurret" to="." method="_on_buy_turret_pressed"]
+[connection signal="pressed" from="BulletVelocity/ButtonBulletVelocity" to="." method="_on_button_bullet_velocity_pressed"]
+[connection signal="pressed" from="MaxHP/ButtonMaxHP" to="." method="_on_button_max_hp_pressed"]

@@ -47,4 +47,8 @@ offset = Vector2(0, -6)
 [node name="Marker2D" type="Marker2D" parent="CannonBase/Cannon"]
 position = Vector2(0, -23)
 
+[node name="FireTimer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="animation_finished" from="CannonBase/Cannon" to="." method="_on_cannon_animation_finished"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

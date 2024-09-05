@@ -1,0 +1,132 @@
+[gd_scene load_steps=13 format=3 uid="uid://kboeioso6hec"]
+
+[ext_resource type="Script" path="res://game/brain/brain.gd" id="1_fgh2e"]
+[ext_resource type="Texture2D" uid="uid://cq4c6v2a1kk3x" path="res://game/brain/brain.png" id="1_ihmik"]
+[ext_resource type="AudioStream" uid="uid://0ihmv3pmcp2t" path="res://game/audio/sfx/aargh_1.ogg" id="3_5qrv2"]
+[ext_resource type="AudioStream" uid="uid://dw2faeutu1487" path="res://game/audio/sfx/aargh_2.ogg" id="4_kvmdb"]
+[ext_resource type="AudioStream" uid="uid://ct1p0mh203dmq" path="res://game/audio/sfx/aargh_3.ogg" id="5_bv42k"]
+[ext_resource type="AudioStream" uid="uid://dpa1uhxlmgk8w" path="res://game/audio/sfx/aargh_4.ogg" id="6_qala1"]
+[ext_resource type="AudioStream" uid="uid://dqwehmkaqu537" path="res://game/audio/sfx/aargh_5.ogg" id="7_c0fkf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vwxn"]
+size = Vector2(78, 20)
+
+[sub_resource type="Animation" id="Animation_x3ber"]
+resource_name = "SHOW"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_h3og1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i2dn4"]
+resource_name = "HURT"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 8), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7udjl"]
+_data = {
+"HURT": SubResource("Animation_i2dn4"),
+"RESET": SubResource("Animation_h3og1"),
+"SHOW": SubResource("Animation_x3ber")
+}
+
+[node name="Brain" type="Area2D"]
+script = ExtResource("1_fgh2e")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ihmik")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_7vwxn")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7udjl")
+}
+autoplay = "SHOW"
+
+[node name="Aargh1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5qrv2")
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kvmdb")
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_bv42k")
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_qala1")
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Aargh5" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_c0fkf")
+max_distance = 640.0
+bus = &"sfx"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
