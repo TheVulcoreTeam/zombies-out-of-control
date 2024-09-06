@@ -41,6 +41,9 @@ func animate_button(button : TextureButton):
 
 func _on_hp_changed(new_value):
 	$HP.value = new_value
+	
+	if new_value == 0:
+		$Display/Anim.play("GAME_OVER")
 
 
 func _on_timer_timeout() -> void:
@@ -66,7 +69,7 @@ func _on_money_added():
 	else:
 		$MaxHP/ButtonMaxHP.disabled = true
 
-	if Main.money >= Main.stats_bullet_velocity_price:
+	if Main.money >= Main.stats_bullet_velocity_price and not $Paddle/FireTimer.wait_time <= 0.2:
 		$BulletVelocity/ButtonBulletVelocity.disabled = false
 		animate_button($BulletVelocity/ButtonBulletVelocity)
 	else:
@@ -100,7 +103,7 @@ func _on_button_max_hp_pressed() -> void:
 	if Main.money >= Main.stats_hp_max_price:
 		Main.money -= Main.stats_hp_max_price
 		Main.hp_max += 1
-		$MaxHP.text = "Max HP: " + str(Main.hp_max)
+		$MaxHP.text = "HP: " + str(Main.hp_max)
 		$HP.max_value = Main.hp_max
 		Main.stats_hp_max_price += 10
 		$MaxHP/Price.text = "$" + str(Main.stats_hp_max_price)
@@ -111,9 +114,13 @@ func _on_button_bullet_velocity_pressed() -> void:
 		Main.money -= Main.stats_bullet_velocity_price
 		Main.stats_bullet_velocity_price += 10
 		$BulletVelocity/Price.text = "$" + str(Main.stats_bullet_velocity_price)
-		$Paddle/FireTimer.wait_time -= 0.1
+		$Paddle/FireTimer.wait_time = clamp(
+			$Paddle/FireTimer.wait_time - 0.1,
+			0.2,
+			1
+		)
 		Main.stats_bullet_velocity = $Paddle/FireTimer.wait_time
-		$BulletVelocity.text = "Bullet Velocity: " + str($Paddle/FireTimer.wait_time)
+		$BulletVelocity.text = "Velocity: " + str($Paddle/FireTimer.wait_time)
 
 
 func _on_button_bullet_damage_pressed() -> void:
@@ -122,4 +129,12 @@ func _on_button_bullet_damage_pressed() -> void:
 		Main.stats_bullet_damage_price += 25
 		$BulletDamage/Price.text = "$" + str(Main.stats_bullet_damage_price)
 		Main.stats_bullet_damage += 1
-		$BulletDamage.text = "Bullet Damage: " + str(Main.stats_bullet_damage)
+		$BulletDamage.text = "Damage: " + str(Main.stats_bullet_damage)
+
+
+func _on_anim_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "SHOW":
+		var towers = get_tree().get_nodes_in_group("Tower")
+		for tower in towers:
+			tower.show()
+			await get_tree().create_timer(0.15).timeout

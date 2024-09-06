@@ -105,3 +105,8 @@ func _on_touch_effect_body_entered(body: Node2D) -> void:
 	if body is Zombie:
 		$TouchEffect/Anim.play("HIT")
 		$TouchEffect/TouchSound.play()
+
+
+func _on_visibility_changed() -> void:
+	$Sprite/Anim.play("SHOW")
+	$TouchEffect/TouchSound.play()

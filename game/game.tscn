@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://uuai23oekr12"]
+[gd_scene load_steps=35 format=3 uid="uid://uuai23oekr12"]
 
 [ext_resource type="Texture2D" uid="uid://c17qtengxgjv5" path="res://game/background/background.png" id="1_hjkjo"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_n2a17"]
@@ -15,6 +15,11 @@
 [ext_resource type="Texture2D" uid="uid://pkeb2jbbfyns" path="res://game/ui/button_plus/button_plus_pressed.png" id="13_2ywo3"]
 [ext_resource type="Texture2D" uid="uid://dk3n14keraydv" path="res://game/ui/button_plus/button_plus_hover.png" id="14_sgjdw"]
 [ext_resource type="Texture2D" uid="uid://dbm3swuaq3bi1" path="res://game/ui/button_plus/button_plus_disabled.png" id="15_4jq58"]
+[ext_resource type="AudioStream" uid="uid://dhxco46ovvifk" path="res://game/audio/sfx/1.ogg" id="16_1gcfj"]
+[ext_resource type="AudioStream" uid="uid://bipquusx8sea1" path="res://game/audio/sfx/2.ogg" id="17_ioghn"]
+[ext_resource type="AudioStream" uid="uid://dr54gwwnx7ahv" path="res://game/audio/sfx/3.ogg" id="18_m4ogt"]
+[ext_resource type="AudioStream" uid="uid://d3bnvsbewkkn8" path="res://game/audio/sfx/go.ogg" id="19_xc75t"]
+[ext_resource type="AudioStream" uid="uid://bqhakha6pkgg7" path="res://game/audio/sfx/game_over.ogg" id="20_j3ckt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wc3aw"]
 font = ExtResource("9_pxsud")
@@ -82,8 +87,206 @@ outline_color = Color(0.960784, 1, 0.909804, 1)
 font = ExtResource("9_pxsud")
 font_size = 122
 font_color = Color(0.388235, 0.670588, 0.247059, 1)
-outline_size = 120
+outline_size = 64
 outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="Animation" id="Animation_74b8q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("1:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("3:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GO:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("GameOver:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:label_settings:font_size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [122]
+}
+
+[sub_resource type="Animation" id="Animation_rafgo"]
+resource_name = "SHOW"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "1", "2", "3", "GO!", ""]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("1:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("3:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GO:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2bq4v"]
+resource_name = "GAME_OVER"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["", "GAME OVER"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [122, 64]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dvhdh"]
+_data = {
+"GAME_OVER": SubResource("Animation_2bq4v"),
+"RESET": SubResource("Animation_74b8q"),
+"SHOW": SubResource("Animation_rafgo")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_n2a17")
@@ -126,30 +329,39 @@ polygon = PackedVector2Array(189, 110, -67, 366, -67, 374, 189, 374)
 metadata/_edit_lock_ = true
 
 [node name="TowerBase1" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(166, 145)
 
 [node name="TowerBase2" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(241, 145)
 
 [node name="TowerBase3" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(316, 145)
 
 [node name="TowerBase4" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(391, 145)
 
 [node name="TowerBase5" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(466, 145)
 
 [node name="TowerBase6" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(200, 220)
 
 [node name="TowerBase7" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(275, 220)
 
 [node name="TowerBase8" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(350, 220)
 
 [node name="TowerBase9" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
+visible = false
 position = Vector2(425, 220)
 
 [node name="Paddle" parent="." instance=ExtResource("5_h0hs6")]
@@ -226,10 +438,10 @@ show_percentage = false
 
 [node name="BulletDamage" type="Label" parent="."]
 offset_left = 542.0
-offset_top = 336.0
+offset_top = 326.0
 offset_right = 630.0
-offset_bottom = 350.0
-text = "Bullet Damage: 1"
+offset_bottom = 340.0
+text = "Damage: 1"
 label_settings = SubResource("LabelSettings_2pvbi")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -240,7 +452,8 @@ anchors_preset = -1
 anchor_left = -0.375
 anchor_right = -0.193
 anchor_bottom = 1.143
-offset_right = -0.0159988
+offset_left = 43.0
+offset_right = 42.984
 offset_bottom = -0.00200081
 pivot_offset = Vector2(8, 8)
 disabled = true
@@ -255,8 +468,8 @@ anchors_preset = -1
 anchor_left = -0.449
 anchor_right = -0.199
 anchor_bottom = 1.143
-offset_left = -20.488
-offset_right = -18.488
+offset_left = 22.512
+offset_right = 24.512
 offset_bottom = -0.00200081
 text = "$10"
 label_settings = SubResource("LabelSettings_s2qst")
@@ -265,10 +478,10 @@ vertical_alignment = 1
 
 [node name="BulletVelocity" type="Label" parent="."]
 offset_left = 542.0
-offset_top = 320.0
+offset_top = 278.0
 offset_right = 630.0
-offset_bottom = 334.0
-text = "Bullet Velocity: 1"
+offset_bottom = 292.0
+text = "Velocity: 1"
 label_settings = SubResource("LabelSettings_y2n6i")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -279,8 +492,8 @@ anchors_preset = -1
 anchor_left = -0.449
 anchor_right = -0.199
 anchor_bottom = 1.143
-offset_left = -20.488
-offset_right = -18.488
+offset_left = 22.512
+offset_right = 24.512
 offset_bottom = -0.00200081
 text = "$5"
 label_settings = SubResource("LabelSettings_twto0")
@@ -293,7 +506,8 @@ anchors_preset = -1
 anchor_left = -0.375
 anchor_right = -0.193
 anchor_bottom = 1.143
-offset_right = -0.0159988
+offset_left = 43.0
+offset_right = 42.984
 offset_bottom = -0.00200081
 pivot_offset = Vector2(8, 8)
 disabled = true
@@ -307,7 +521,7 @@ offset_left = 542.0
 offset_top = 304.0
 offset_right = 630.0
 offset_bottom = 318.0
-text = "Max HP: 3"
+text = "HP: 3"
 label_settings = SubResource("LabelSettings_y2n6i")
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -318,8 +532,8 @@ anchors_preset = -1
 anchor_left = -0.449
 anchor_right = -0.182
 anchor_bottom = 1.0
-offset_left = -20.488
-offset_right = -19.984
+offset_left = 22.512
+offset_right = 23.016
 text = "$5"
 label_settings = SubResource("LabelSettings_c3ujo")
 horizontal_alignment = 2
@@ -331,7 +545,8 @@ anchors_preset = -1
 anchor_left = -0.375
 anchor_right = -0.193
 anchor_bottom = 1.143
-offset_right = -0.0159988
+offset_left = 43.0
+offset_right = 42.984
 offset_bottom = -0.00200081
 pivot_offset = Vector2(8, 8)
 disabled = true
@@ -341,14 +556,43 @@ texture_hover = ExtResource("14_sgjdw")
 texture_disabled = ExtResource("15_4jq58")
 
 [node name="Display" type="Label" parent="."]
-visible = false
 offset_right = 640.0
 offset_bottom = 362.0
-text = "GO!"
 label_settings = SubResource("LabelSettings_jflfx")
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
+
+[node name="Anim" type="AnimationPlayer" parent="Display"]
+libraries = {
+"": SubResource("AnimationLibrary_dvhdh")
+}
+autoplay = "SHOW"
+
+[node name="1" type="AudioStreamPlayer" parent="Display"]
+stream = ExtResource("16_1gcfj")
+pitch_scale = 1.2
+bus = &"sfx"
+
+[node name="2" type="AudioStreamPlayer" parent="Display"]
+stream = ExtResource("17_ioghn")
+pitch_scale = 1.2
+bus = &"sfx"
+
+[node name="3" type="AudioStreamPlayer" parent="Display"]
+stream = ExtResource("18_m4ogt")
+pitch_scale = 1.2
+bus = &"sfx"
+
+[node name="GO" type="AudioStreamPlayer" parent="Display"]
+stream = ExtResource("19_xc75t")
+pitch_scale = 1.2
+bus = &"sfx"
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Display"]
+stream = ExtResource("20_j3ckt")
+pitch_scale = 0.5
+bus = &"sfx"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Difficulty" to="." method="_on_difficulty_timeout"]
@@ -357,3 +601,4 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="BulletDamage/ButtonBulletDamage" to="." method="_on_button_bullet_damage_pressed"]
 [connection signal="pressed" from="BulletVelocity/ButtonBulletVelocity" to="." method="_on_button_bullet_velocity_pressed"]
 [connection signal="pressed" from="MaxHP/ButtonMaxHP" to="." method="_on_button_max_hp_pressed"]
+[connection signal="animation_finished" from="Display/Anim" to="." method="_on_anim_animation_finished"]
