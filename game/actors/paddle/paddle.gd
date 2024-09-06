@@ -14,17 +14,19 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	movement_direction_x = Input.get_axis("ui_left", "ui_right")
-	velocity.x = movement_direction_x * delta * speed
-	
-	move_and_slide()
+	if Main.is_game_started:
+		movement_direction_x = Input.get_axis("ui_left", "ui_right")
+		velocity.x = movement_direction_x * delta * speed
+		
+		move_and_slide()
 
 
 func _process(delta: float) -> void:
-	global_position.y = store_global_position.y
-	
-	$CannonBase/Cannon.look_at(get_global_mouse_position())
-	$CannonBase/Cannon.rotation_degrees += 90
+	if Main.is_game_started:
+		global_position.y = store_global_position.y
+		
+		$CannonBase/Cannon.look_at(get_global_mouse_position())
+		$CannonBase/Cannon.rotation_degrees += 90
 
 
 func create_bullet():

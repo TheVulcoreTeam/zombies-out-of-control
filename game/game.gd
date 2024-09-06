@@ -43,7 +43,18 @@ func _on_hp_changed(new_value):
 	
 	if new_value == 0:
 		$Display/Anim.play("GAME_OVER")
-
+		Main.is_game_started = false
+		
+		for zombie in get_tree().get_nodes_in_group("ZOMBIES"):
+			if is_instance_valid(zombie):
+				zombie.dead()
+				await get_tree().create_timer(0.05).timeout
+		
+		for tower in get_tree().get_nodes_in_group("Tower"):
+			if is_instance_valid(tower):
+				tower.destroy()
+				await get_tree().create_timer(0.25).timeout
+		
 
 func _on_timer_timeout() -> void:
 	if Main.is_game_started:
@@ -94,7 +105,7 @@ func _on_buy_turret_pressed() -> void:
 
 
 func _on_health_timeout() -> void:
-	if Main.hp < Main.hp_max:
+	if Main.is_game_started and Main.hp < Main.hp_max:
 		Main.hp += 1
 
 
@@ -139,3 +150,4 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 			await get_tree().create_timer(0.15).timeout
 		
 		Main.is_game_started = true
+		

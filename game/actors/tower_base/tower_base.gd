@@ -44,6 +44,10 @@ func fire() -> void:
 		
 			get_parent().add_child(bullet_inst)
 
+func destroy():
+	$Sprite/Anim.play_backwards("SHOW")
+	$Explosion.play()
+
 
 func get_nearest():
 	var distance := 5000.0
