@@ -1,10 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2hf3i2w2fntc"]
+[gd_scene load_steps=11 format=3 uid="uid://b2hf3i2w2fntc"]
 
 [ext_resource type="Script" path="res://game/actors/paddle/paddle.gd" id="1_etdiq"]
-[ext_resource type="Texture2D" uid="uid://edbkfxx3jjj4" path="res://game/actors/paddle/paddle.png" id="1_uv5us"]
+[ext_resource type="Texture2D" uid="uid://kd7r0dcr6bf0" path="res://game/actors/paddle/paddle_1.png" id="2_uaqmn"]
+[ext_resource type="Texture2D" uid="uid://2fs1yafo36ct" path="res://game/actors/paddle/paddle_2.png" id="3_2bude"]
 [ext_resource type="Texture2D" uid="uid://dghosv203n4uw" path="res://game/actors/paddle/cannon_base1.png" id="3_uqwmt"]
 [ext_resource type="Texture2D" uid="uid://c256n3pby5yi2" path="res://game/actors/paddle/cannon1.png" id="4_6rhur"]
+[ext_resource type="Texture2D" uid="uid://b2sdqe4xs8dws" path="res://game/actors/paddle/paddle_3.png" id="4_umhci"]
 [ext_resource type="Texture2D" uid="uid://clogolaojggt0" path="res://game/actors/paddle/cannon2.png" id="5_6sqhr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5v0yd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uaqmn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2bude")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_umhci")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gy6gj"]
 radius = 15.0
@@ -28,8 +47,9 @@ animations = [{
 motion_mode = 1
 script = ExtResource("1_etdiq")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_uv5us")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5v0yd")
+autoplay = "default"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 rotation = 1.5708

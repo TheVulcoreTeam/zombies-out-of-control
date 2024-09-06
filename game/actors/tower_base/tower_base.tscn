@@ -112,6 +112,7 @@ texture = ExtResource("3_xgtpb")
 shape = SubResource("CircleShape2D_3cxdg")
 
 [node name="FireDelay" type="Timer" parent="Sprite/Tower"]
+wait_time = 0.25
 autostart = true
 
 [node name="Anim" type="AnimationPlayer" parent="Sprite"]

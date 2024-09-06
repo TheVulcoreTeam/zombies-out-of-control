@@ -2,7 +2,6 @@ extends Node2D
 
 const ZOMBIE = preload("res://game/enemies/zombies/zombie.tscn")
 
-
 func _ready() -> void:
 	randomize()
 	
@@ -47,8 +46,8 @@ func _on_hp_changed(new_value):
 
 
 func _on_timer_timeout() -> void:
-	create_zombie()
-	$Timer.wait_time = clamp($Timer.wait_time - 0.01, 1, 3)
+	if Main.is_game_started:
+		create_zombie()
 
 
 func _on_score_added():
@@ -138,3 +137,5 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 		for tower in towers:
 			tower.show()
 			await get_tree().create_timer(0.15).timeout
+		
+		Main.is_game_started = true

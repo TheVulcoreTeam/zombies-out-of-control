@@ -10,6 +10,7 @@ var store_global_position : Vector2
 
 func _ready() -> void:
 	store_global_position = global_position
+	$FireTimer.wait_time = Main.stats_bullet_velocity
 
 
 func _physics_process(delta: float) -> void:
@@ -39,5 +40,6 @@ func _on_cannon_animation_finished() -> void:
 
 
 func _on_fire_timer_timeout() -> void:
-	create_bullet()
-	$CannonBase/Cannon.play()
+	if Main.is_game_started:
+		create_bullet()
+		$CannonBase/Cannon.play()

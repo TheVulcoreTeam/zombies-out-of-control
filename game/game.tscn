@@ -1,8 +1,8 @@
 [gd_scene load_steps=35 format=3 uid="uid://uuai23oekr12"]
 
-[ext_resource type="Texture2D" uid="uid://c17qtengxgjv5" path="res://game/background/background.png" id="1_hjkjo"]
 [ext_resource type="Script" path="res://game/game.gd" id="1_n2a17"]
 [ext_resource type="PackedScene" uid="uid://btrtvj117be6s" path="res://game/actors/tower_base/tower_base.tscn" id="2_4mh7s"]
+[ext_resource type="Texture2D" uid="uid://dk0jtcrk5l6dq" path="res://game/background/new_background.png" id="2_85lwy"]
 [ext_resource type="Texture2D" uid="uid://q55cguym8uxt" path="res://game/ui/shop_button/button-normal.png" id="5_bwq4w"]
 [ext_resource type="PackedScene" uid="uid://b2hf3i2w2fntc" path="res://game/actors/paddle/paddle.tscn" id="5_h0hs6"]
 [ext_resource type="Texture2D" uid="uid://dxkq86qg156m5" path="res://game/ui/shop_button/button-pressed.png" id="6_17dtk"]
@@ -292,12 +292,12 @@ _data = {
 script = ExtResource("1_n2a17")
 
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("1_hjkjo")
+texture = ExtResource("2_85lwy")
 centered = false
 metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.3
 autostart = true
 
 [node name="Difficulty" type="Timer" parent="."]
@@ -314,7 +314,7 @@ collision_mask = 3
 metadata/_edit_lock_ = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Left"]
-polygon = PackedVector2Array(0, 96, 256, 352, 256, 360, 0, 360)
+polygon = PackedVector2Array(0, 96, 256, 352, 256, 440, 0, 440)
 metadata/_edit_lock_ = true
 
 [node name="Right" type="StaticBody2D" parent="."]
@@ -325,7 +325,7 @@ metadata/_edit_lock_ = true
 
 [node name="Collision" type="CollisionPolygon2D" parent="Right"]
 position = Vector2(129, -14)
-polygon = PackedVector2Array(189, 110, -67, 366, -67, 374, 189, 374)
+polygon = PackedVector2Array(189, 110, -67, 366, -67, 454, 189, 454)
 metadata/_edit_lock_ = true
 
 [node name="TowerBase1" parent="." groups=["Tower"] instance=ExtResource("2_4mh7s")]
@@ -365,7 +365,7 @@ visible = false
 position = Vector2(425, 220)
 
 [node name="Paddle" parent="." instance=ExtResource("5_h0hs6")]
-position = Vector2(320, 285)
+position = Vector2(320, 302)
 platform_on_leave = 1
 
 [node name="BuyTurret" type="TextureButton" parent="."]
@@ -423,7 +423,7 @@ autoplay = true
 bus = &"bgm"
 
 [node name="Brain" parent="." instance=ExtResource("11_0w71a")]
-position = Vector2(320, 343)
+position = Vector2(320, 423)
 
 [node name="HP" type="ProgressBar" parent="."]
 offset_left = 513.0
@@ -438,9 +438,9 @@ show_percentage = false
 
 [node name="BulletDamage" type="Label" parent="."]
 offset_left = 542.0
-offset_top = 326.0
+offset_top = 416.0
 offset_right = 630.0
-offset_bottom = 340.0
+offset_bottom = 430.0
 text = "Damage: 1"
 label_settings = SubResource("LabelSettings_2pvbi")
 horizontal_alignment = 2
@@ -478,9 +478,9 @@ vertical_alignment = 1
 
 [node name="BulletVelocity" type="Label" parent="."]
 offset_left = 542.0
-offset_top = 278.0
+offset_top = 368.0
 offset_right = 630.0
-offset_bottom = 292.0
+offset_bottom = 382.0
 text = "Velocity: 1"
 label_settings = SubResource("LabelSettings_y2n6i")
 horizontal_alignment = 2
@@ -518,9 +518,9 @@ texture_disabled = ExtResource("15_4jq58")
 
 [node name="MaxHP" type="Label" parent="."]
 offset_left = 542.0
-offset_top = 304.0
+offset_top = 394.0
 offset_right = 630.0
-offset_bottom = 318.0
+offset_bottom = 408.0
 text = "HP: 3"
 label_settings = SubResource("LabelSettings_y2n6i")
 horizontal_alignment = 2

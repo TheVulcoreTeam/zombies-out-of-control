@@ -31,6 +31,7 @@ func dead(with_score := false) -> void:
 		get_node("Aargh" + str(randi_range(1, 5))).play()
 	
 	$Collision.call_deferred("set_disabled", true)
+	$HurtArea/Collision.call_deferred("set_disabled", true)
 	$HP.hide()
 	$Anim.play("DEAD")
 
