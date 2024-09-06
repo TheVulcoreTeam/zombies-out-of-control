@@ -16,6 +16,7 @@ func _ready() -> void:
 	$HP.max_value = new_hp
 	$HP.value = new_hp
 	hp = new_hp
+	
 	print("hp", hp)
 	
 	
@@ -29,13 +30,16 @@ func dead(with_score := false) -> void:
 		
 		get_node("Aargh" + str(randi_range(1, 5))).play()
 	
+	$Collision.call_deferred("set_disabled", true)
+	$HP.hide()
 	$Anim.play("DEAD")
 
 
 func _on_hurt_area_body_entered(body: Node2D) -> void:
 	if body is Bullet:
-		body.dead()
+		$HP.show()
 		hp -= body.damage
+		body.dead()
 
 
 func _on_value_changed(value : float):

@@ -4,7 +4,7 @@ class_name Bullet
 
 var direction 
 var speed := 300
-var damage := 1
+var damage := Main.stats_bullet_damage
 
 
 func _ready() -> void:

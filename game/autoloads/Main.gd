@@ -26,7 +26,6 @@ var hp := 3:
 var hp_max := 3:
 	set(value):
 		hp_max = value
-		#Signal.hp_max_changed.emit()
 
 var price_automatic_tower := 10:
 	set(value):

@@ -24,13 +24,28 @@ func create_zombie():
 	add_child(zombie_inst)
 
 
+func animate_button(button : TextureButton):
+	var tween = create_tween()
+	tween.tween_property(
+		button,
+		"scale",
+		Vector2.ONE * 1.4,
+		0.2
+	).from_current().set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		button,
+		"scale",
+		Vector2.ONE,
+		0.2
+	).from_current().set_ease(Tween.EASE_OUT)
+
 func _on_hp_changed(new_value):
 	$HP.value = new_value
 
 
 func _on_timer_timeout() -> void:
 	create_zombie()
-	$Timer.wait_time = clamp($Timer.wait_time - Main.difficulty / 16, 1, 5)
+	$Timer.wait_time = clamp($Timer.wait_time - 0.01, 1, 3)
 
 
 func _on_score_added():
@@ -47,13 +62,21 @@ func _on_money_added():
 	
 	if Main.money >= Main.stats_hp_max_price:
 		$MaxHP/ButtonMaxHP.disabled = false
+		animate_button($MaxHP/ButtonMaxHP)
 	else:
 		$MaxHP/ButtonMaxHP.disabled = true
 
 	if Main.money >= Main.stats_bullet_velocity_price:
 		$BulletVelocity/ButtonBulletVelocity.disabled = false
+		animate_button($BulletVelocity/ButtonBulletVelocity)
 	else:
 		$BulletVelocity/ButtonBulletVelocity.disabled = true
+
+	if Main.money >= Main.stats_bullet_damage_price:
+		$BulletDamage/ButtonBulletDamage.disabled = false
+		animate_button($BulletDamage/ButtonBulletDamage)
+	else:
+		$BulletDamage/ButtonBulletDamage.disabled = true
 
 
 func _on_price_automatic_tower_changed(new_value):
@@ -61,7 +84,7 @@ func _on_price_automatic_tower_changed(new_value):
 
 
 func _on_difficulty_timeout() -> void:
-	Main.difficulty += 0.5
+	Main.difficulty += 0.25
 
 
 func _on_buy_turret_pressed() -> void:
@@ -88,6 +111,15 @@ func _on_button_bullet_velocity_pressed() -> void:
 		Main.money -= Main.stats_bullet_velocity_price
 		Main.stats_bullet_velocity_price += 10
 		$BulletVelocity/Price.text = "$" + str(Main.stats_bullet_velocity_price)
-		$Paddle/FireTimer.wait_time -= 0.4
+		$Paddle/FireTimer.wait_time -= 0.1
 		Main.stats_bullet_velocity = $Paddle/FireTimer.wait_time
 		$BulletVelocity.text = "Bullet Velocity: " + str($Paddle/FireTimer.wait_time)
+
+
+func _on_button_bullet_damage_pressed() -> void:
+	if Main.money >= Main.stats_bullet_damage_price:
+		Main.money -= Main.stats_bullet_damage_price
+		Main.stats_bullet_damage_price += 25
+		$BulletDamage/Price.text = "$" + str(Main.stats_bullet_damage_price)
+		Main.stats_bullet_damage += 1
+		$BulletDamage.text = "Bullet Damage: " + str(Main.stats_bullet_damage)

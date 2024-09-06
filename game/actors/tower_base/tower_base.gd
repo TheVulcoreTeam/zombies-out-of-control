@@ -96,3 +96,12 @@ func _on_state_buying(buyed : bool):
 		$Sprite["self_modulate"] = "green"
 	else:
 		$Sprite["self_modulate"] = "white"
+
+
+func _on_touch_effect_body_entered(body: Node2D) -> void:
+	if Main.buy_automatic_tower_state:
+		return
+	
+	if body is Zombie:
+		$TouchEffect/Anim.play("HIT")
+		$TouchEffect/TouchSound.play()

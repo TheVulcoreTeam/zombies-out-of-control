@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://btrtvj117be6s"]
+[gd_scene load_steps=13 format=3 uid="uid://btrtvj117be6s"]
 
 [ext_resource type="Texture2D" uid="uid://c6oa3rlyurcla" path="res://game/actors/tower_base/tower_base.png" id="1_4dhj5"]
 [ext_resource type="Script" path="res://game/actors/tower_base/tower_base.gd" id="1_v1euk"]
 [ext_resource type="Texture2D" uid="uid://682ixerldrhk" path="res://game/actors/automatic_tower/tower.png" id="3_xgtpb"]
+[ext_resource type="AudioStream" uid="uid://d2w505v8xtf50" path="res://game/audio/sfx/touch_sound_turret.ogg" id="4_ckiyq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3cxdg"]
 radius = 83.4865
@@ -12,6 +13,51 @@ radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6ax8"]
 size = Vector2(32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oa4n7"]
+radius = 16.0312
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1orql"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("4_ckiyq")
+
+[sub_resource type="Animation" id="Animation_eyqf8"]
+resource_name = "HIT"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.572549, 0.909804, 0.752941, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lysvb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ww4o"]
+_data = {
+"HIT": SubResource("Animation_eyqf8"),
+"RESET": SubResource("Animation_lysvb")
+}
 
 [node name="TowerBase" type="StaticBody2D"]
 script = ExtResource("1_v1euk")
@@ -39,6 +85,21 @@ shape = SubResource("CircleShape2D_yruvl")
 [node name="Collision" type="CollisionShape2D" parent="MouseInside"]
 shape = SubResource("RectangleShape2D_k6ax8")
 
+[node name="TouchEffect" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="TouchEffect"]
+shape = SubResource("CircleShape2D_oa4n7")
+
+[node name="TouchSound" type="AudioStreamPlayer2D" parent="TouchEffect"]
+stream = SubResource("AudioStreamRandomizer_1orql")
+max_distance = 640.0
+bus = &"sfx"
+
+[node name="Anim" type="AnimationPlayer" parent="TouchEffect"]
+libraries = {
+"": SubResource("AnimationLibrary_0ww4o")
+}
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="body_entered" from="Sprite/Tower/FireArea" to="." method="_on_fire_area_body_entered"]
@@ -46,3 +107,4 @@ shape = SubResource("RectangleShape2D_k6ax8")
 [connection signal="timeout" from="Sprite/Tower/FireDelay" to="." method="_on_fire_delay_timeout"]
 [connection signal="mouse_entered" from="MouseInside" to="." method="_on_mouse_inside_mouse_entered"]
 [connection signal="mouse_exited" from="MouseInside" to="." method="_on_mouse_inside_mouse_exited"]
+[connection signal="body_entered" from="TouchEffect" to="." method="_on_touch_effect_body_entered"]
