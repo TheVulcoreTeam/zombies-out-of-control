@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://kboeioso6hec"]
 
 [ext_resource type="Script" path="res://game/brain/brain.gd" id="1_fgh2e"]
-[ext_resource type="Texture2D" uid="uid://cq4c6v2a1kk3x" path="res://game/brain/brain.png" id="1_ihmik"]
+[ext_resource type="Texture2D" uid="uid://djxm0m1mqp3r8" path="res://game/brain/brain.png" id="1_ihmik"]
 [ext_resource type="AudioStream" uid="uid://0ihmv3pmcp2t" path="res://game/audio/sfx/aargh_1.ogg" id="3_5qrv2"]
 [ext_resource type="AudioStream" uid="uid://dw2faeutu1487" path="res://game/audio/sfx/aargh_2.ogg" id="4_kvmdb"]
 [ext_resource type="AudioStream" uid="uid://ct1p0mh203dmq" path="res://game/audio/sfx/aargh_3.ogg" id="5_bv42k"]

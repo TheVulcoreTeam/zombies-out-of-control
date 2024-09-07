@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b2hf3i2w2fntc" path="res://game/actors/paddle/paddle.tscn" id="5_h0hs6"]
 [ext_resource type="Texture2D" uid="uid://dxkq86qg156m5" path="res://game/ui/shop_button/button-pressed.png" id="6_17dtk"]
 [ext_resource type="Texture2D" uid="uid://cxyk62jnqycw6" path="res://game/ui/shop_button/button-hover.png" id="7_1gyrf"]
-[ext_resource type="Texture2D" uid="uid://682ixerldrhk" path="res://game/actors/automatic_tower/tower.png" id="8_cs7si"]
+[ext_resource type="Texture2D" uid="uid://dbjw0l1h54ms1" path="res://game/actors/automatic_tower/cannon1.png" id="9_3aeys"]
 [ext_resource type="FontFile" uid="uid://cyejmf344osl8" path="res://game/fonts/Nokia/nokia.ttf" id="9_pxsud"]
 [ext_resource type="AudioStream" uid="uid://l1w4wc7b2v7h" path="res://game/audio/bgm/Neon.ogg" id="10_0hpyu"]
 [ext_resource type="PackedScene" uid="uid://kboeioso6hec" path="res://game/brain/brain.tscn" id="11_0w71a"]
@@ -36,31 +36,19 @@ outline_color = Color(0.960784, 1, 0.909804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4tjw"]
 bg_color = Color(0.960784, 1, 0.909804, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.960784, 1, 0.909804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eg815"]
 bg_color = Color(1, 0.321569, 0.466667, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-
-[sub_resource type="LabelSettings" id="LabelSettings_2pvbi"]
-font = ExtResource("9_pxsud")
-font_size = 8
-font_color = Color(1, 0.321569, 0.466667, 1)
-outline_size = 8
-outline_color = Color(0.960784, 1, 0.909804, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_s2qst"]
-font = ExtResource("9_pxsud")
-font_size = 8
-font_color = Color(1, 0.537255, 0.2, 1)
-outline_size = 8
-outline_color = Color(0.960784, 1, 0.909804, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.960784, 1, 0.909804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y2n6i"]
 font = ExtResource("9_pxsud")
@@ -70,6 +58,20 @@ outline_size = 8
 outline_color = Color(0.960784, 1, 0.909804, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_twto0"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.537255, 0.2, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2pvbi"]
+font = ExtResource("9_pxsud")
+font_size = 8
+font_color = Color(1, 0.321569, 0.466667, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2qst"]
 font = ExtResource("9_pxsud")
 font_size = 8
 font_color = Color(1, 0.537255, 0.2, 1)
@@ -89,6 +91,58 @@ font_size = 122
 font_color = Color(0.388235, 0.670588, 0.247059, 1)
 outline_size = 64
 outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="Animation" id="Animation_2bq4v"]
+resource_name = "GAME_OVER"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GameOver:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["", "GAME OVER"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [122, 64]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.53333, 3),
+"transitions": PackedFloat32Array(1, 0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_74b8q"]
 length = 0.001
@@ -253,58 +307,6 @@ tracks/4/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_2bq4v"]
-resource_name = "GAME_OVER"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("GameOver:playing")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:text")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["", "GAME OVER"]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:label_settings:font_size")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [122, 64]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:self_modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.53333, 3),
-"transitions": PackedFloat32Array(1, 0.5, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvhdh"]
 _data = {
 "GAME_OVER": SubResource("Animation_2bq4v"),
@@ -395,9 +397,9 @@ platform_on_leave = 1
 [node name="BuyTurret" type="TextureButton" parent="."]
 visible = false
 offset_left = 9.0
-offset_top = 318.0
+offset_top = 394.0
 offset_right = 41.0
-offset_bottom = 350.0
+offset_bottom = 426.0
 texture_normal = ExtResource("5_bwq4w")
 texture_pressed = ExtResource("6_17dtk")
 texture_hover = ExtResource("7_1gyrf")
@@ -420,7 +422,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("8_cs7si")
+texture = ExtResource("9_3aeys")
 stretch_mode = 3
 
 [node name="Score" type="Label" parent="."]
@@ -447,60 +449,21 @@ autoplay = true
 bus = &"bgm"
 
 [node name="Brain" parent="." instance=ExtResource("11_0w71a")]
-position = Vector2(320, 423)
+position = Vector2(320, 413)
 
 [node name="HP" type="ProgressBar" parent="."]
-offset_left = 513.0
-offset_top = 8.0
-offset_right = 633.0
-offset_bottom = 18.0
+offset_left = 257.0
+offset_top = 430.0
+offset_right = 383.0
+offset_bottom = 440.0
 theme_override_styles/background = SubResource("StyleBoxFlat_f4tjw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_eg815")
 step = 1.0
 value = 50.0
 show_percentage = false
 
-[node name="BulletDamage" type="Label" parent="."]
-offset_left = 542.0
-offset_top = 416.0
-offset_right = 630.0
-offset_bottom = 430.0
-text = "Damage: 1"
-label_settings = SubResource("LabelSettings_2pvbi")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="ButtonBulletDamage" type="TextureButton" parent="BulletDamage"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.375
-anchor_right = -0.193
-anchor_bottom = 1.143
-offset_left = 43.0
-offset_right = 42.984
-offset_bottom = -0.00200081
-pivot_offset = Vector2(8, 8)
-disabled = true
-texture_normal = ExtResource("12_ru5mv")
-texture_pressed = ExtResource("13_2ywo3")
-texture_hover = ExtResource("14_sgjdw")
-texture_disabled = ExtResource("15_4jq58")
-
-[node name="Price" type="Label" parent="BulletDamage"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.449
-anchor_right = -0.199
-anchor_bottom = 1.143
-offset_left = 22.512
-offset_right = 24.512
-offset_bottom = -0.00200081
-text = "$10"
-label_settings = SubResource("LabelSettings_s2qst")
-horizontal_alignment = 2
-vertical_alignment = 1
-
 [node name="BulletVelocity" type="Label" parent="."]
+visible = false
 offset_left = 542.0
 offset_top = 368.0
 offset_right = 630.0
@@ -540,11 +503,53 @@ texture_pressed = ExtResource("13_2ywo3")
 texture_hover = ExtResource("14_sgjdw")
 texture_disabled = ExtResource("15_4jq58")
 
+[node name="BulletDamage" type="Label" parent="."]
+offset_left = 441.0
+offset_top = 390.0
+offset_right = 529.0
+offset_bottom = 404.0
+scale = Vector2(2, 2)
+text = "Damage: 1"
+label_settings = SubResource("LabelSettings_2pvbi")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="ButtonBulletDamage" type="TextureButton" parent="BulletDamage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.375
+anchor_right = -0.193
+anchor_bottom = 1.143
+offset_left = 43.0
+offset_right = 42.984
+offset_bottom = -0.00200081
+pivot_offset = Vector2(8, 8)
+disabled = true
+texture_normal = ExtResource("12_ru5mv")
+texture_pressed = ExtResource("13_2ywo3")
+texture_hover = ExtResource("14_sgjdw")
+texture_disabled = ExtResource("15_4jq58")
+
+[node name="Price" type="Label" parent="BulletDamage"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.449
+anchor_right = -0.199
+anchor_bottom = 1.143
+offset_left = 22.512
+offset_right = 24.512
+offset_bottom = -0.00200081
+text = "$10"
+label_settings = SubResource("LabelSettings_s2qst")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="MaxHP" type="Label" parent="."]
-offset_left = 542.0
-offset_top = 394.0
-offset_right = 630.0
-offset_bottom = 408.0
+offset_left = 441.0
+offset_top = 360.0
+offset_right = 529.0
+offset_bottom = 374.0
+scale = Vector2(2, 2)
 text = "HP: 3"
 label_settings = SubResource("LabelSettings_y2n6i")
 horizontal_alignment = 2
@@ -581,7 +586,7 @@ texture_disabled = ExtResource("15_4jq58")
 
 [node name="Display" type="Label" parent="."]
 offset_right = 640.0
-offset_bottom = 362.0
+offset_bottom = 438.0
 label_settings = SubResource("LabelSettings_jflfx")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -622,7 +627,9 @@ bus = &"sfx"
 [connection signal="timeout" from="Difficulty" to="." method="_on_difficulty_timeout"]
 [connection signal="timeout" from="Health" to="." method="_on_health_timeout"]
 [connection signal="pressed" from="BuyTurret" to="." method="_on_buy_turret_pressed"]
-[connection signal="pressed" from="BulletDamage/ButtonBulletDamage" to="." method="_on_button_bullet_damage_pressed"]
 [connection signal="pressed" from="BulletVelocity/ButtonBulletVelocity" to="." method="_on_button_bullet_velocity_pressed"]
+[connection signal="pressed" from="BulletDamage/ButtonBulletDamage" to="." method="_on_button_bullet_damage_pressed"]
 [connection signal="pressed" from="MaxHP/ButtonMaxHP" to="." method="_on_button_max_hp_pressed"]
 [connection signal="animation_finished" from="Display/Anim" to="." method="_on_anim_animation_finished"]
+
+[editable path="Brain"]

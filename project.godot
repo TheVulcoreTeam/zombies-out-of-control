@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Main="*res://game/autoloads/Main.gd"
 Signals="*res://game/autoloads/Signals.gd"
+Transition="*res://game/autoloads/transition.tscn"
 
 [display]
 

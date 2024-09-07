@@ -43,6 +43,8 @@ func fire() -> void:
 			bullet_inst.direction = direction
 		
 			get_parent().add_child(bullet_inst)
+			$Sprite/Tower.play()
+
 
 func destroy():
 	$Sprite/Anim.play_backwards("SHOW")

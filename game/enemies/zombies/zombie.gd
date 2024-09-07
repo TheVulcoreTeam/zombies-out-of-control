@@ -12,7 +12,7 @@ var hp : int:
 
 
 func _ready() -> void:
-	var new_hp = randi_range(1, clamp(int(Main.difficulty), 1, 10))
+	var new_hp = randi_range(1, clamp(int(Main.difficulty * 2), 1, 50))
 	$HP.max_value = new_hp
 	$HP.value = new_hp
 	hp = new_hp

@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2hf3i2w2fntc"]
+[gd_scene load_steps=15 format=4 uid="uid://b2hf3i2w2fntc"]
 
 [ext_resource type="Script" path="res://game/actors/paddle/paddle.gd" id="1_etdiq"]
 [ext_resource type="Texture2D" uid="uid://kd7r0dcr6bf0" path="res://game/actors/paddle/paddle_1.png" id="2_uaqmn"]
 [ext_resource type="Texture2D" uid="uid://2fs1yafo36ct" path="res://game/actors/paddle/paddle_2.png" id="3_2bude"]
-[ext_resource type="Texture2D" uid="uid://dghosv203n4uw" path="res://game/actors/paddle/cannon_base1.png" id="3_uqwmt"]
 [ext_resource type="Texture2D" uid="uid://c256n3pby5yi2" path="res://game/actors/paddle/cannon1.png" id="4_6rhur"]
 [ext_resource type="Texture2D" uid="uid://b2sdqe4xs8dws" path="res://game/actors/paddle/paddle_3.png" id="4_umhci"]
 [ext_resource type="Texture2D" uid="uid://clogolaojggt0" path="res://game/actors/paddle/cannon2.png" id="5_6sqhr"]
@@ -43,6 +42,123 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_lskjm"]
+resource_name = "DEAD"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.4, 1.4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CannonBase:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ccfjm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CannonBase:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4g7j"]
+_data = {
+"DEAD": SubResource("Animation_lskjm"),
+"RESET": SubResource("Animation_ccfjm")
+}
+
+[sub_resource type="OggPacketSequence" id="OggPacketSequence_14a0i"]
+packet_data = Array[Array]([[PackedByteArray("AXZvcmJpcwAAAAABRKwAAAAAAACAOAEAAAAAALgB")], [PackedByteArray("A3ZvcmJpcwwAAABMYXZmNjEuMS4xMDABAAAAHgAAAGVuY29kZXI9TGF2YzYxLjMuMTAwIGxpYnZvcmJpcwE="), PackedByteArray("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")], [PackedByteArray("TGkHnHkPwAgANAM0v392coGWoxy+e38mBVmBuPF5BYyrvzIyMQI="), PackedByteArray("bGktl/kANoBNgN/6d9izKwi3jcZs70s9T2t8Ka+Ab6eaZpavkYPvNr6EKgE="), PackedByteArray("nGUNIO9qe6wBC0jHgfmeZE3rVQpeWeabySb1LyuJM/lIfCn7Xsq+Ew=="), PackedByteArray("dGNfAml45j4ajCD1NT3zk+Nl4a1p15Uzml5XNqtOSE5ITjAds2+tDw=="), PackedByteArray("bF9mR3Bvhe6GNEhpEl57N41awdFe53O5kUGk+PiUyZtyF/1W6usqJ7zWMbkB"), PackedByteArray("lGXOhpP9ABaQuoDDFq5Vq9WqbDQ1het6P/MX2bqcReRp4me9IFJtvn/kZL1Z"), PackedByteArray("XOHkorTffDLP8zxHGcD17b33PrUom31Bj4+PX7/5+vXr18fHx7Wa9ff903/6T//pRqs1AA=="), PackedByteArray("hF20SPTdTw/qIBSk/y3p8h/yv7Y/m0J/YOYS/7qTjL/uJOMPzGcj/tWRAA=="), PackedByteArray("jOn6pMcfwAawC9hzt6GBX2HdTmZ/7yUbCX6rrkP3LK/DciJ7/Z6niagG"), PackedByteArray("hGMdSfSnJKACknxvMf80af2ywdqr45XVbC668du2lSlbTlZZHa9IBQ=="), PackedByteArray("LE34kPePaNtAg8RO1/YbP9Xq1N+WU+dCwlot0VronDVx4JNmbbYS"), PackedByteArray("dF0tIH8AFpA6AE0PzRhqV7LVTa1UcVcF+fM/4HZup661anmV9wNvv716XRce"), PackedByteArray("VGuNlnsBUAPYQ8ArMp3n+oJKthCqM6283k6a7inJ/O468/ePtWmswidVEw=="), PackedByteArray("bGVNIY8CIAIA1QN4efBKW1Yd0rHEqzkvmk6d1+yEv2J4AA=="), PackedByteArray("jGNdUBue9UoCIoBfXtcrkb6XaWOz72WOk/vOOTZrZ81KCQ=="), PackedByteArray("VF3+h/gAEEGqDGD+2aMyjAKpfbPrysvCS99aQvLH0vv8snD2mU5yXAI="), PackedByteArray("VFVNIei3xzyTjCAtwR5lTfopj3/+/rTje+Vf/Ml+bPXJZfJTqwdjPVFjPZEA"), PackedByteArray("dGH4XDwARADgCHC9vHdxUAlBlJ4tRX6qi65ery8VRVHU6xI="), PackedByteArray("ZFfkge0fPW8gCOA+mvezcKd9tDgV61EZrLt1WagXN6QE"), PackedByteArray("hGUykEcBEAGAjgCOmBs1qKYxVE/8jw436n/0daOqJ45mVPsM"), PackedByteArray("lGMykId/kQ0QAbxttN9DjX+O/0cqhnt0x+g7qkT1r/bvDg=="), PackedByteArray("hF1NIA1/dM4GRAAgid93NVRYOSLDV47n1fHK6shNI12W"), PackedByteArray("XOsMLfcCQAQAqh/A2rpuvm6KkK9rPyBDnU5cchqdqy7Zpskp"), PackedByteArray("dOlMLvsAkAJYDTDf6jNGWmu5yid8wnDlm2++GR2G4TTTTDPNNPlvJ03yGA=="), PackedByteArray("nGUNIPYPigywgKTRz+PNe8CraiXmqZ6y8hMO+ELhn1Kwqvs3136TFvoGDw=="), PackedByteArray("hOcMLvUAqAEsATvupg4zC4K/ac/s+db63lw4pRln1KG9IEat+3v7yHLWAQ=="), PackedByteArray("dGk9l3kAYgAbgPPGNRIFrkr5Y0dZV2dW5hKTP5ZeEu2bV5ai1jWjAA=="), PackedByteArray("dO222rgPYAMAnSdw0/i1kZE61bUfxWPjJf2HEzrH6p0t4t4Jj0Zz0k60TAI="), PackedByteArray("bGkfdNA+AEQAoHEAfPwqOc67XI59sN48oS0v6+3jg8XlYn98AA=="), PackedByteArray("bGedlIoCIAIAPU7gmFId+bzjOMvLy8vLy8vLy8vLy8vLy8vLy8sS"), PackedByteArray("jGWUSfSvTIQjEQrS27PWT5dG/y/jRm0fb47i327St3rS6t+MQr+nTNou"), PackedByteArray("fF8yEPv/c3RbbJD2Q/SoRO9/Nilg0h3f2T+6s6/asjDF6XL2ZNodAA=="), PackedByteArray("jGU9IH8ANkgnwMMGi1U0OX+dVmFba8DX+ZRfPpPvFTfp+2d3EAu4rXSs+gw="), PackedByteArray("nGUNIO1fbEaCIki7VvstN245jUr+yuc1nuLY2vx4f9Xbr+P9VW/LcAA="), PackedByteArray("jGc9SfT36+2FBcAh+e1559Ntwc3MNq86/1s78N4nfML8ypXuKp5mmmn6jxs="), PackedByteArray("jGMtIH8AFpBOgO3ePNcXVPOVC3lVrdstWHwqV/7RgcaqlZjn+dzalZSmgwU="), PackedByteArray("+mtmpgJ8APC/+DWv5qOcvPo6JieHeq2IsAiy9mikclQSKJnX1poaey7xut/ZNd56I9KmjTmEeybRmZb6zAQy8jxtMuLz55DsgVtRBXQuejOOp0VvNEQ+bNzFNgZZ45i7I2KGUNyR4wSnMlYv5qXCBsepKXl+7hljfT048rL86Y0c+/U+Y4sO7daaw/pWdPXCDUicnDwaFLWfAkNiZ5lbfR2xXoWRl+WX4NheZCkLFXsHgrCerP58D7zbpHb1jb9ZGg=="), PackedByteArray("Hm1upQJ8APDvjTo56J7tZg/TC23JSWDNmuWs2OTXFV6sq/z4nej/6kxwFJ32A03N7s/VwMnFUSr3vakG+NjZDF0zqbzdQKTyi8rwkAnyqNcAvicxvD1MZs4UZTfiWsLPexGzmwHWd69rFji6bvKcD+dv8cMF19rEc84aTvqGMIQGPyJQG9bFbqMLrQVa8XV2G22hJgOzUKLveg0xLgVtLNKo98AoImhjHiI9MCYRUljZIpMDGQM="), PackedByteArray("Hn1usQB8APBvN5tDnYw6y+1M2V4MJQmUWuJnVMMibTVbmZfmf/nZnig0bse/dps7Ko3NH6Tmkpa4ydU7E2yP1wUCTCOhJL6lScZEJ/iji5n2eJHD+Kfjf0YO6f0T3rzcJQaXwP1c6kL7n7fEhJOmG3c2gNMMVqC87mC7TEikyq+inkTsQhQiaf+U3b3LwLMHn2vv2qxPeYo+EHdmmzoyL63GlSaac7BLQjkdFyNzds6SMK9w1bxmGy0Hn2fMGg=="), PackedByteArray("fiwutQHxA8D3MfrYxW52FzMRQcJB9zDTS+okgdLXvpe8BDlSlzTV4Rpa/htUunbztpV9f/a5LZhZNSNc1gucYaB6A6pVOlOulo/7ZG0rlfcM6c2rFRWSab/QIXxwHUe8ynE6ChZmOlLf1R2Suwa57Br8YHRSfuBaRVhxxIK9HuQqRlLdPtqnN7k91NKiFdZK7/jqna5+2zWmj7zd518nhA92dfKPTmJJfu+cL5NIMPZiPVufF2vEY9nlNoxE78TNpdCJJ4jaxXnTSSU="), PackedByteArray("ljuWrgQQAL7f+emiWqa/nOwT3+I6bhiGOQOCHiWnlCRQ/rGvp03tVpV4nr/t93U5XtW5ntn/n7C3DpoaMcVyHv+ql05AONgGIewo6S0pjvcbrRGtQozsJVuVD/m2ge0roo1/V5nciTaXyprU3n2G6qew8WXmBR9uow28siBGeq0GoSISe4upql+XWiVk7R3B1Lo05zRM3FeznJoy6CVxgmiSlqZur89C7jT5sPZdJuc5fOuQfYOMJhVTXDTHm+Rm9wY="), PackedByteArray("bOlkaRMFQAQAOgHGK6t/UZhWarAob630YlHe6tmLxW0B"), PackedByteArray("dN2YQhD+ozgAIoCLDTEpDZ+RitH/Of4fcVfHPycq0j263AE="), PackedByteArray("dFtNkA3/tWMBEQCY1h5L66FyRPf/uTrufka6yqp306uzGw=="), PackedByteArray("bGUNl44CIAIAZwB2n91f4FeN8fUaTjNUpatXOE3/Srp6Rcb7LQ=="), PackedByteArray("bO3mRu4B2ABA5wn8Pryw5hjrchfd+AO7HmkgZVv5AMdIA7W31uDtbSuj"), PackedByteArray("dGFmR2i/9eQCI0hfCOH43CZ0lo59irr1xvO+tNY65Y+FeG3ueyn7vJkC"), PackedByteArray("dOGwQHwAFpBqQPVVZZcsFwWnb3ptVdu1P5hQ6zfx5Txlrmhu2veluEwwHQ=="), PackedByteArray("bGUdl3oANoAl4KmmaVOEYWb2Zzev98gcMz3VD87ZhXubMl3AB2el8NkA"), PackedByteArray("XFu2R7B/bXQ3bJASDZHFjI28Pn+fUujjqbkjvGL5eLrieJHwOPv4VhQA"), PackedByteArray("dGEtIP8AaZC6ANfXM7Omwtd3YyMSxMt2fz6f+55F7nIW7pIee1rV9r7+vglLoQ=="), PackedByteArray("ZFV2R/cBIAIARQBNxyX7+v1R9GGtER5QFK1eL4tiuV4viwI="), PackedByteArray("XGM76eoBCAIA1QLYQEefUFXH0g/rdKvu+NmbrReFv7+1egE="), PackedByteArray("ZGOypKIAiABAL8DVVflOUYtNozrqf2L3G9VR/93hGtWjbycA"), PackedByteArray("XOEELvMAbACbA9bSdzCbS8SG3j3UPZL/nNuaFbft6nu94rafMn6siF4A"), PackedByteArray("fF0tIO8/dWSDCkiu/fuuTdK66Ej2/qrV6BSn9zxO8XVEpb9qNbo/XwA="), PackedByteArray("fF0tSPXbjl5AA7iaNvfLxl0LmJJmujR9e/V6M6zn/Lc9nVpedf4PXBUA"), PackedByteArray("TOlCI+8B2ABWDzC+Pi03X1d5we2mKYT7uZmvfLd/wHuhha/r/Xmq7leOFgA="), PackedByteArray("XOlmRu4B2ABAzwE82lUnDetkp+tNUrZs4Og01454bNnaA8ab1N6ygT0i"), PackedByteArray("VNuwQN6vTiRQBKnVsj5zVOHnrPnWFt7LxE9XtE7ue5k2XpvupYxNAA=="), PackedByteArray("LNn4kP4ANoDVATw1tCgNC23dl/dt0FcoTuAPSa1HdNfLZgbXr7hYwT3atQI="), PackedByteArray("bGUtN/IAbAB7AT4usXnaRuVRU1ttdjm1WdarB5rrCvjW4dXrtD/NMjET"), PackedByteArray("XNu0or+/VebukgYp/d6x93me0Lk6tRKPjY2Nx0vMvveHP3VC5+JYbkPJVo8E"), PackedByteArray("hGXsc/AAEAEsAV/sNrubyyXDmWex0eqHYHF5eTkZPj4+EkAC"), PackedByteArray("bGedlH0ANoBdgDpPMSopmyn+/94R2+t9GCWesMHthBWPf2fE9nofiVYA"), PackedByteArray("fFstIO+3F0cCNUjRV7OOP06TciD/5/ifE4cN+uGR88bTGkm4Nf/b498R"), PackedByteArray("fF8tIO9f71iwgNTTnWfy+/l5uElHNv4A3yPZuH4vy82teVz7MzLN52uXJQ=="), PackedByteArray("XFekSfQvtmVgg7SefYzjX5p3fu9tKistx/mNrMy6PceFRk6Xze04DhheAQ=="), PackedByteArray("ZFktSPQP6qMXYpCGrN+xnMvt3M7t3M7t1F2r1nTTTTdd83z1Kq/yKq/yKn2apgA="), PackedByteArray("WuuVLgG8APC9/0rld/WUeh0jbr+cHKnD3An09khpOkclgdJCz/vPYW39XPQufEnqUrYtq13/JTZe56tM65n0VRczT0bZte5MURBHTEIZc7g0kC+nwhtLFYw3a8a+lExbfyioj/9gor3AMCbfz82fApjlhOlVkszQ/d2Cw6pNyd9CBZFchfGSQnRv2nqxYNeo23f1fS2axb46nApDlZJj68fCDLImfp5SbNZSIu8lvntT4L1kaC9gY/ULLQRncrULjfwF"), PackedByteArray("9gpmvkIWLwD8n6f9tBx+XG58F4etBwsByJJhhlGSQJnUWSbEuPYWVzP5z8RHb/f07La0/vy8ZfnolyPdVLwMa7EVgfYgWDiIkoZsQleAUMNaL38uyyA3c2GtWLXHkhxlBIlhFF4NH7SHd/r8fHlG7644y3XYKbQTShCTo4wgFH8puzBL8QxNQ8lKElxZh7a2haip7mdhbu2RlGWM11LgNJNLNG16CGbv97OEJU6WOSeg5ukw8MIWs+J3yexjAA=="), PackedByteArray("XNkQasADQCCARQCn+ixWaDRNM/dBFDg3uN3+/v37txihB5Mm9RQA"), PackedByteArray("bGej9DQKgAIA9AJ8f8zScr9foaDoXVpeXu5NLghWv2919WPdAg=="), PackedByteArray("ZF+yJMK/eqoGRACgmfibSj3qf3S4Uf+jw436Hx1uVGW0FQ=="), PackedByteArray("VFFtgA3/eSxABLCHlIUu6fifEzfDPbpj9A2Ko9uj7KcG"), PackedByteArray("VOF62ugHsAE8Anbc2S7nbJ0h0aAf69p/jXO3TWbJNL8SFTT+BVnwPkoA"), PackedByteArray("dF0NIO2/1guogCQhHMMm6SfOq2T1r1S9PTLvcQFvq9EfWH0Nx/uHVAA="), PackedByteArray("fF8tSPSHIzJAKUjh2COnxnqVVzVWremmm266W7dzOw86zTTTTCMWuxeHJxs="), PackedByteArray("ZFltIQ1/RDEWEAGA/911dtG++GWtXBjCN6+0bypcKxcGfwI="), PackedByteArray("VGPNlIoCUASwCZD7e9KsSCsK4RrDViHev9XNqvDbbrLSAQ=="), PackedByteArray("XF9fQuIB2CBVDeD62zXMX6BWH/u5yRmVdbVnVh12zUGhZEKtJ65MPGsA"), PackedByteArray("RFfuh/wB2CDVgF31jx4r2ewoGHxfWdWixePkKtvsQPN4aqtss4PVVvcC"), PackedByteArray("XOFEnVcfIA1gncCJUm6JSn+1ej73caPR1NQUel3n8/dNlM22IPuyupEoFjsC"), PackedByteArray("fF09GNondV0jbQBb6H/C+T24d26PjuK7/3vMzHMr/n5CZr0bSvsPRzO5FQA="), PackedByteArray("bF2EEd7/69FN2iBJP2+bdqi6y2+Lb2rHdJftwgrUZ1AvfWE5b2aQmwsP"), PackedByteArray("VFkNEf4AbJDqBI4RijSRpsD8FFcX9qSrqi9uudiCP68+0ZHah3SfJdu7AQ=="), PackedByteArray("ZFstSfUv42iLDeDRw02OmLjZWjZHlGkdyPK94rafcpxby+aI1pQDHQ=="), PackedByteArray("LFedlHsANoAVwCs9NcOzarn56RpXHyz8nLWgo0VnuEro05qhY9rHdIq1Bg=="), PackedByteArray("+uo1sQYgAPzvH1HxuuebE8/NSzqdSDmn7aUPskd5JiVJoMyl+16dTeRTCRUgOSu1kxqrn+Z0lP101W2/h3hY5is81CajQKpk0kD+UIRqnFXjm16v+5dQX3SwI7e6qvV9f0m/+kkPpqhAqmTSQP6wIFaGIymnw036PrjHczhFnWFcu1ZIOrYjRfp3dNXwYSTaTzE+mu0wiLRSxfX9JaKnjid67R/aYNPaQrrlqrFDGfGJ+NFg20Bqp+PKXxE5t/QhYTdg3VxrlS1FCg=="), PackedByteArray("PtxttQF8ANBuMWrHWOasHd3EMJqUkQTKaIZH++1irnHm9P7MHze3R+3nOvPnfTny1sP7rRxRPHmeRdhrvtB7ewO2aj10Ct0OyfWK4LXpfN++PvhY3g1ZrsWl28P9WKSl212R/3Ku3PfrH5OlYsVZUe72owTsHWflggTWZjX1d4M5RKxtn2m2yZ9jM+c0hsyVsUFNPWTbVqup1qPtSPsmvm+ZD2eQ4f7WM7Zf6v5sc/NWmvIYGv6GzIdFo/eRs4jtGR4C"), PackedByteArray("vptNKQHcAPB9HVHdgJOv0YmNyAG29WhiGNqWLYFS/TsqfaqNVEN0Styu8YHQdi3tIdn1wF1UwueMyNBNx4LZRA38YhG5jKrK55hmabO6SMvGC8S72Ub2Bsds5YeYBfXWvHwGUT5B7Uo/4oUWnPh/RF7MsMWuJeKVFUw5e2SCmkZhv+/L7FUbMDwboNEheO9JyPXNXsBlKHIZ1bKrWwYeWWiph+6pYNzVqERQX0E+I6t8Q2nbavatWmwA"), PackedByteArray("fnstLgLsAPDuij72wB5PdM3SALOMoa3QUbHA3siy7sUw55L9S6PuVPIRSsTDcjyX32DQXLQf1qSLdsXCa6hi484c7Vi0K3rEfgTkHHsI9AOiW92b0Gt3Epe7RspOUP6Jyca+pqPgzlMdRtRORZ4hbjpmDNVgcPoJVF6lI87y0VTv+VJj0wMTZTVyO/PWkcXrG4LI/sFvPW4aERmfzBh3yCzaSdmtndS5KbbzFK0TtewB"), PackedByteArray("vntNMQK+A8C77PGsIJ3nCggJmiYzbWdLFIJyWF/XtefYk+R/pqVyujFHsmk31BBnxTxyHqUrkRLHX6W1r6fKQ7H7NrQfivjy4TG3gMM9wtbmVjl9WzFqVksr2W5O8vifAXE0JYXZ5rXoP3l6/5GFiOVaxJ9mlvE6lOtOeM81Sz9Bye0MoG5OTpMz66amqLlOnpJ751rBzRRzTtyWnIB/TwasxNanYJdBtCpziLYLIZrtxaeW9gA="), PackedByteArray("HlstxgO8APBfRDllROD8ygM2RwNSk6GzqSRBUDplhgmpXvmbagVvW8z7CiSxTQMB+yO3AaZdqzNgejyBFa6hz8DdAKw4PoXuLg6AT84FOPUJSHb1GX7pAdQ8TLmPS+q3DkYFldsvWz+4twGt9C7J3Ru2la5guvXkdEM0eSdYjFioDsC4sStRDsHfgDjqX+7KRNbgv/E+kc39PyoJvh17lCrfTjL6TE4q+I7WhCuKfsO27QYN"), PackedByteArray("Ppudew0CQQTp+0kPx7zkMWt1E4Kkh5VpjJEkFlhuHMlhPmtezqi+0HgxHq3Ja/H4Ntf9j7y6j1JKYAZbN6gt31zFK4OKmplj6wa+9/fLfifr5jvskME3kdRkTNA3sPXceyw1FBP0DfTZYu22fcSoH/sNLKuV0XHpowwp33nWy7Vb8hPUpdzs9fIPu/wEcosf9sGX5SeQT5oMAEsRYWwnGfKR84zgcJLNeTHtCiGcgjm/p9CkoE1TqwE="), PackedByteArray("/mqtsQD8APA9b3rbBrWjyAximwahh456LkoSKJP/tXmDcv+5o1nT5na1r27W6elhZ0NV/dBin16YLa6iUjJaIn2aDBC4jw/km14mkE7EeVanNA47feuT2CRh5lfT2S2xFJkrc/IT13MMOl96GlPB3ttrp6/1u5nEjK7csN9UzTLzEpPJgaPZMe2WQzKhJjBYGX9TlveafTemlGd2ZNtvx4iXjt3cpabpI7gawutsNrsFSZjOI0luoUiQ"), PackedByteArray("ngqdSgH4AOD//LKzWQg72yVig4UNGcMwKZUkUKarRs3vMPl10dGr5WO5+s1+WZYUd3l108vquPbbj5g5EfWh8TBMB6+L1ESaeNpWpltvyIzeYkc5dm5a7LZKnOMfAWrBZJcGZnkwULszrnpJLbfhGHHns8mKzfplosTmJsEwmnuQ5q1jnkcnK5FqILjPuE2wb94YHf+WSHCH9YbYd1MBbIKRuLnZP/CXALlD0YyvpQWbrFGCwnrqGw=="), PackedByteArray("HuocYwPlYwP498jGjE5mGdLMKEkCZRjf3845TP4Psz3+2yO/na6335ry3P8tbKPRhudOH6oJTwNQ2bf3V6jD2onbbKUhSZn1Beo4nelj/951/UTM5gMsK0ylf4QQsurH2pfFgYVEXhhDtTqLBPHcN6XLRucRUKvPz5GXQKw7S9kmtDbqwgTbme/x61M39yNMaXAv8vJNCNFmbgmLXQPLopmAl+i+zckZAUvFh0MDEtoy1kMznw9UAg=="), PackedByteArray("XnisrgHyBxNb3jbGMM8wh86eUUpJEii37PNmkj7uO7Lddy/r12Zb88ftCvx2rr2pH2YP5XNZcs+x1gpnUCoro4ySp1+7sj6l+PTL/hRPiYrtBxklrtcV+7z8JPBOcp712cd0g5p/pH1xvHYtzDFrYtaE+UlYXlt4eMZ6tP3gH1Ulp51ISK22u1qY4/d9tCVdIn72wjyYa8dCQmyuJc1xvLYXiDmdWVkigb0wN107HCc2zXKO42fPczO34IOS7twpfbpG6cS6Sw==")]])
+granule_positions = PackedInt64Array(0, 0, 28143)
+sampling_rate = 44100.0
+
+[sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_g3yyn"]
+packet_sequence = SubResource("OggPacketSequence_14a0i")
+
 [node name="Paddle" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_etdiq")
@@ -57,7 +173,6 @@ shape = SubResource("CapsuleShape2D_gy6gj")
 
 [node name="CannonBase" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
-texture = ExtResource("3_uqwmt")
 
 [node name="Cannon" type="AnimatedSprite2D" parent="CannonBase"]
 position = Vector2(0, 6)
@@ -69,6 +184,18 @@ position = Vector2(0, -23)
 
 [node name="FireTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s4g7j")
+}
+
+[node name="Explosion" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamOggVorbis_g3yyn")
+volume_db = 5.0
+pitch_scale = 0.5
+max_distance = 640.0
+bus = &"sfx"
 
 [connection signal="animation_finished" from="CannonBase/Cannon" to="." method="_on_cannon_animation_finished"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]

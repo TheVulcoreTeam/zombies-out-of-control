@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dghosv203n4uw"
-path="res://.godot/imported/cannon_base1.png-26bd828a1fb1370cfd22fa72e70a36b4.ctex"
+uid="uid://dbjw0l1h54ms1"
+path="res://.godot/imported/cannon1.png-2b07e027364adcbeb2ccf82ebab3ec2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/actors/paddle/cannon_base1.png"
-dest_files=["res://.godot/imported/cannon_base1.png-26bd828a1fb1370cfd22fa72e70a36b4.ctex"]
+source_file="res://game/actors/automatic_tower/cannon1.png"
+dest_files=["res://.godot/imported/cannon1.png-2b07e027364adcbeb2ccf82ebab3ec2d.ctex"]
 
 [params]
 

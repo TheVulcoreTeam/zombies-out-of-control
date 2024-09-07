@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djxm0m1mqp3r8"
-path="res://.godot/imported/brain.png-175c6356242d26182e8894b42b4232c6.ctex"
+uid="uid://cpreotwja5gno"
+path="res://.godot/imported/tower_base_off.png-e01ea1c52c50d4d046fb1ad5a585fd1b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/brain/brain.png"
-dest_files=["res://.godot/imported/brain.png-175c6356242d26182e8894b42b4232c6.ctex"]
+source_file="res://game/actors/tower_base/tower_base_off.png"
+dest_files=["res://.godot/imported/tower_base_off.png-e01ea1c52c50d4d046fb1ad5a585fd1b.ctex"]
 
 [params]
 

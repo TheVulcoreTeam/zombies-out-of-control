@@ -37,6 +37,11 @@ func create_bullet():
 	get_parent().add_child(bullet_inst)
 
 
+func paddle_dead():
+	$Anim.play("DEAD")
+	$Explosion.play()
+
+
 func _on_cannon_animation_finished() -> void:
 	$CannonBase/Cannon.frame = 0
 

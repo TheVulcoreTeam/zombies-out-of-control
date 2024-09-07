@@ -55,6 +55,9 @@ func _on_hp_changed(new_value):
 				tower.destroy()
 				await get_tree().create_timer(0.25).timeout
 		
+		await get_tree().create_timer(0.05).timeout
+		$Paddle.paddle_dead()
+
 
 func _on_timer_timeout() -> void:
 	if Main.is_game_started:
@@ -113,6 +116,7 @@ func _on_button_max_hp_pressed() -> void:
 	if Main.money >= Main.stats_hp_max_price:
 		Main.money -= Main.stats_hp_max_price
 		Main.hp_max += 1
+		Main.hp += 1
 		$MaxHP.text = "HP: " + str(Main.hp_max)
 		$HP.max_value = Main.hp_max
 		Main.stats_hp_max_price += 10
@@ -150,4 +154,5 @@ func _on_anim_animation_finished(anim_name: StringName) -> void:
 			await get_tree().create_timer(0.15).timeout
 		
 		Main.is_game_started = true
-		
+	elif anim_name == "GAME_OVER":
+		Transition.change_scene_to_file("res://game/game.tscn")

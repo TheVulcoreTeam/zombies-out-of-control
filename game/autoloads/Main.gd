@@ -36,7 +36,7 @@ var price_automatic_tower := 10:
 var stats_bullet_damage := 1
 var stats_bullet_damage_price := 10
 
-var stats_bullet_velocity := 0.2
+var stats_bullet_velocity := 0.3
 var stats_bullet_velocity_price := 5
 
 var stats_hp_max := 3

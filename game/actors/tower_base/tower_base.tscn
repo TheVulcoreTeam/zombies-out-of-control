@@ -1,13 +1,46 @@
-[gd_scene load_steps=17 format=3 uid="uid://btrtvj117be6s"]
+[gd_scene load_steps=19 format=3 uid="uid://btrtvj117be6s"]
 
-[ext_resource type="Texture2D" uid="uid://c6oa3rlyurcla" path="res://game/actors/tower_base/tower_base.png" id="1_4dhj5"]
 [ext_resource type="Script" path="res://game/actors/tower_base/tower_base.gd" id="1_v1euk"]
-[ext_resource type="Texture2D" uid="uid://682ixerldrhk" path="res://game/actors/automatic_tower/tower.png" id="3_xgtpb"]
+[ext_resource type="Texture2D" uid="uid://cpreotwja5gno" path="res://game/actors/tower_base/tower_base_off.png" id="2_hlusg"]
+[ext_resource type="Texture2D" uid="uid://dbjw0l1h54ms1" path="res://game/actors/automatic_tower/cannon1.png" id="3_tdoyc"]
 [ext_resource type="AudioStream" uid="uid://d2w505v8xtf50" path="res://game/audio/sfx/touch_sound_turret.ogg" id="4_ckiyq"]
+[ext_resource type="Texture2D" uid="uid://ckdoqb8tkb2t3" path="res://game/actors/automatic_tower/cannon2.png" id="4_rs6k6"]
 [ext_resource type="AudioStream" uid="uid://b65ywdjp8nos2" path="res://game/audio/sfx/explosion.ogg" id="5_tlwra"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdjql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tdoyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rs6k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tdoyc")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3cxdg"]
 radius = 83.4865
+
+[sub_resource type="Animation" id="Animation_rriby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_nn8xi"]
 resource_name = "SHOW"
@@ -23,21 +56,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.5, 2, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_rriby"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ja8h4"]
@@ -101,11 +119,11 @@ _data = {
 script = ExtResource("1_v1euk")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_4dhj5")
+texture = ExtResource("2_hlusg")
 
-[node name="Tower" type="Sprite2D" parent="Sprite"]
+[node name="Tower" type="AnimatedSprite2D" parent="Sprite"]
 visible = false
-texture = ExtResource("3_xgtpb")
+sprite_frames = SubResource("SpriteFrames_cdjql")
 
 [node name="FireArea" type="Area2D" parent="Sprite/Tower"]
 
