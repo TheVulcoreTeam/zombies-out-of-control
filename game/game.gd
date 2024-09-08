@@ -76,8 +76,8 @@ func _on_hp_changed(new_value):
 func _on_timer_timeout() -> void:
 	if Main.is_game_started:
 		create_zombie()
-		$Timer.wait_time = clamp($Timer.wait_time - 0.001, 0.05, 5)
-		print($Timer.wait_time)
+		$Timer.wait_time = clamp($Timer.wait_time - 0.005, 0.1, 5)
+		#print($Timer.wait_time)
 
 
 func _on_score_added():

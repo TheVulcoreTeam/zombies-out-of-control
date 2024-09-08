@@ -2,13 +2,18 @@ extends RigidBody2D
 class_name Zombie
 
 
-var hp : int:
+var hp : float:
 	set(value):
 		hp = value
-		$HP.value_changed.emit(float(hp))
+		$HP.value_changed.emit(hp)
+		
+		if hp < hp_max:
+			$HP.show()
 		
 		if hp <= 0:
 			dead(true)
+
+var hp_max : int
 
 
 func _ready() -> void:
@@ -16,9 +21,7 @@ func _ready() -> void:
 	$HP.max_value = new_hp
 	$HP.value = new_hp
 	hp = new_hp
-	
-	print("hp", hp)
-	
+	hp_max = new_hp
 	
 	$HP.value_changed.connect(_on_value_changed)
 
@@ -38,7 +41,6 @@ func dead(with_score := false) -> void:
 
 func _on_hurt_area_body_entered(body: Node2D) -> void:
 	if body is Bullet:
-		$HP.show()
 		hp -= body.damage
 		body.dead()
 

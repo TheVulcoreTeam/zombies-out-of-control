@@ -7,6 +7,9 @@ var speed := 6000
 
 var store_global_position : Vector2
 
+var zombie_is_entered := false
+var overlapping_hit_left
+var overlapping_hit_right
 
 func _ready() -> void:
 	store_global_position = global_position
@@ -27,6 +30,27 @@ func _process(delta: float) -> void:
 		
 		$CannonBase/Cannon.look_at(get_global_mouse_position())
 		$CannonBase/Cannon.rotation_degrees += 90
+	
+	overlapping_hit_left = $HitLeft.get_overlapping_bodies()
+	
+	if overlapping_hit_left.size() > 0:
+		for overlapping in overlapping_hit_left:
+			if overlapping is Zombie:
+				if not $PaddleHit.playing:
+					overlapping.hp -= Main.stats_bullet_damage
+					$PaddleHit.play()
+					$Anim.play("PADDLE_HIT")
+	
+	overlapping_hit_right = $HitRight.get_overlapping_bodies()
+	
+	if overlapping_hit_right.size() > 0:
+		for overlapping in overlapping_hit_right:
+			if overlapping is Zombie:
+				if not $PaddleHit.playing:
+					overlapping.hp -= Main.stats_bullet_damage
+					$PaddleHit.play()
+					$Anim.play("PADDLE_HIT")
+				
 
 
 func create_bullet():
@@ -50,3 +74,19 @@ func _on_fire_timer_timeout() -> void:
 	if Main.is_game_started:
 		create_bullet()
 		$CannonBase/Cannon.play()
+
+
+func _on_hit_left_body_entered(body: Node2D) -> void:
+	#if body is Zombie:
+		#body.hp -= Main.stats_bullet_damage
+		#$PaddleHit.play()
+		#$Anim.play("PADDLE_HIT")
+	zombie_is_entered = true
+	
+
+func _on_hit_right_body_entered(body: Node2D) -> void:
+	#if body is Zombie:
+		#body.hp -= Main.stats_bullet_damage
+		#$PaddleHit.play()
+		#$Anim.play("PADDLE_HIT")
+	zombie_is_entered = true
