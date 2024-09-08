@@ -323,7 +323,6 @@ centered = false
 metadata/_edit_lock_ = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
 autostart = true
 
 [node name="Difficulty" type="Timer" parent="."]
@@ -331,7 +330,7 @@ wait_time = 5.0
 autostart = true
 
 [node name="Health" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 30.0
 autostart = true
 
 [node name="Left" type="StaticBody2D" parent="."]
@@ -410,7 +409,7 @@ offset_left = -9.0
 offset_top = 21.0
 offset_right = 41.0
 offset_bottom = 44.0
-text = "10"
+text = "$50"
 label_settings = SubResource("LabelSettings_wc3aw")
 horizontal_alignment = 1
 vertical_alignment = 1

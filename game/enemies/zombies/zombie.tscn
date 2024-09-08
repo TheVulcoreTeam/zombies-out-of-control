@@ -16,7 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dqwehmkaqu537" path="res://game/audio/sfx/aargh_5.ogg" id="9_t0ric"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xnpc4"]
-bounce = 0.75
+bounce = 0.3
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0rgb"]
 animations = [{

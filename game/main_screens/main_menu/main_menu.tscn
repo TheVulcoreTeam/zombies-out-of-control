@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo8tqn1efp0b5"]
+[gd_scene load_steps=7 format=3 uid="uid://bo8tqn1efp0b5"]
 
 [ext_resource type="Texture2D" uid="uid://dk0jtcrk5l6dq" path="res://game/background/new_background.png" id="1_5aj30"]
+[ext_resource type="Script" path="res://game/main_screens/main_menu/main_menu.gd" id="1_335bi"]
+[ext_resource type="FontFile" uid="uid://cyejmf344osl8" path="res://game/fonts/Nokia/nokia.ttf" id="2_6akhr"]
+[ext_resource type="AudioStream" uid="uid://c1ftfaax47v48" path="res://game/audio/bgm/Sometimes.ogg" id="4_7f43n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_um6mc"]
+font = ExtResource("2_6akhr")
+font_color = Color(1, 0.321569, 0.466667, 1)
+outline_size = 8
+outline_color = Color(0.960784, 1, 0.909804, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ptelj"]
+font = ExtResource("2_6akhr")
+font_size = 32
+font_color = Color(0.388235, 0.670588, 0.247059, 1)
+outline_size = 16
+outline_color = Color(0.960784, 1, 0.909804, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,9 +25,84 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_335bi")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_5aj30")
+metadata/_edit_lock_ = true
+
+[node name="Version" type="Label" parent="."]
+layout_mode = 0
+offset_left = 513.0
+offset_top = 410.0
+offset_right = 634.0
+offset_bottom = 433.0
+text = "v0.1.0"
+label_settings = SubResource("LabelSettings_um6mc")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MaxScore" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 232.0
+offset_top = 140.0
+offset_right = 470.0
+offset_bottom = 163.0
+text = "Max Score: 9999"
+label_settings = SubResource("LabelSettings_um6mc")
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_top = 33.0
+offset_right = 640.0
+offset_bottom = 140.0
+text = "Zombies Out Of Control"
+label_settings = SubResource("LabelSettings_ptelj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 358.0
+offset_right = 193.0
+offset_bottom = 433.0
+theme_override_colors/default_color = Color(1, 0.321569, 0.466667, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 1, 0.909804, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("2_6akhr")
+theme_override_font_sizes/normal_font_size = 8
+bbcode_enabled = true
+text = "[center][url=https://vulcoreteam.com/]VulcoreTeam[/url]
+
+Programmer / Game Design / Music:
+[color=63ab3f][url=https://www.youtube.com/@FuryCode]Matías Muñoz Espinoza (FuryCode)[/url][/color]
+
+Art
+[color=63ab3f][url=https://x.com/Vassink_]Eduardo Varas[/url][/color]
+[/center]"
+scroll_active = false
+
+[node name="Start" type="Button" parent="."]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 199.0
+offset_right = 383.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(1, 0.321569, 0.466667, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 1, 0.909804, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6akhr")
+text = "START"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7f43n")
+autoplay = true
+
+[connection signal="meta_clicked" from="Credits" to="." method="_on_credits_meta_clicked"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

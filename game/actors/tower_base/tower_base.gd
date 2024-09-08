@@ -41,7 +41,7 @@ func fire() -> void:
 			
 			var direction = bullet_inst.global_position.direction_to(nearest_enemy.global_position) as Vector2
 			bullet_inst.direction = direction
-		
+			
 			get_parent().add_child(bullet_inst)
 			$Sprite/Tower.play()
 
@@ -66,7 +66,7 @@ func create_automatic_tower():
 	automatic_tower = true
 	Main.buy_automatic_tower_state = false
 	Main.money -= Main.price_automatic_tower
-	Main.price_automatic_tower += 15
+	Main.price_automatic_tower += 100
 
 
 func _on_fire_area_body_entered(body: Node2D) -> void:

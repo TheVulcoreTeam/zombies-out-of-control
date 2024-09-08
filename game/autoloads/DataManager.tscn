@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqc26by1yycet"]
+
+[ext_resource type="Script" path="res://game/autoloads/data_manager.gd" id="1_p71cw"]
+[ext_resource type="Script" path="res://addons/persistence_node/persistence_node.gd" id="2_rceby"]
+
+[node name="DataManager" type="Node"]
+script = ExtResource("1_p71cw")
+
+[node name="Persistence" type="Node" parent="."]
+script = ExtResource("2_rceby")

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://game/autoloads/curtain.gd" id="1_a7uao"]
 
-[sub_resource type="Animation" id="Animation_133al"]
-resource_name = "SHOW"
+[sub_resource type="Animation" id="Animation_f36px"]
+resource_name = "HIDE"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -12,10 +12,10 @@ tracks/0/path = NodePath("Background:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.8),
+"times": PackedFloat32Array(0, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.113725, 0.113725, 0.113725, 0), Color(0.114897, 0.114897, 0.114897, 1)]
+"values": [Color(0.114897, 0.114897, 0.114897, 1), Color(0.113725, 0.113725, 0.113725, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_1fefv"]
@@ -33,8 +33,8 @@ tracks/0/keys = {
 "values": [Color(0.113725, 0.113725, 0.113725, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_f36px"]
-resource_name = "HIDE"
+[sub_resource type="Animation" id="Animation_133al"]
+resource_name = "SHOW"
 length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -43,10 +43,10 @@ tracks/0/path = NodePath("Background:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0.0333333, 0.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0.114897, 0.114897, 0.114897, 1), Color(0.113725, 0.113725, 0.113725, 0)]
+"values": [Color(0.113725, 0.113725, 0.113725, 0), Color(0.114897, 0.114897, 0.114897, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xx3sa"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ZombiesOutOfControl"
-run/main_scene="res://game/game.tscn"
+run/main_scene="res://game/main_screens/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Main="*res://game/autoloads/Main.gd"
 Signals="*res://game/autoloads/Signals.gd"
 Transition="*res://game/autoloads/transition.tscn"
+DataManager="*res://game/autoloads/DataManager.tscn"
 
 [display]
 
@@ -28,6 +29,10 @@ window/size/viewport_height=440
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/persistence_node/plugin.cfg")
 
 [global_group]
 
